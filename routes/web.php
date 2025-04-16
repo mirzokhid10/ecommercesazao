@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\RoleMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,7 +24,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 /** AdminController **/
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware('auth')->name('admin.dashboard');
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware('auth', 'role:admin')->name('admin.dashboard');
 
 /** VendorController **/
-Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->middleware('auth')->name('vendor.dashboard');
+Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->middleware('auth', 'role:vendor')->name('vendor.dashboard');

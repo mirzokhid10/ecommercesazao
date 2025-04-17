@@ -25,7 +25,7 @@
                                 <div class="row">
                                     <div class="form-group col-12">
                                         <div class="mb-3">
-                                            <img width="100px" src="" alt="{{ asset(Auth::user()->image) }}">
+                                            <img width="100px" src="{{ asset(Auth::user()->image) }}" alt="">
                                         </div>
                                         <label>Image</label>
                                         <input type="file" name="image" class="form-control">

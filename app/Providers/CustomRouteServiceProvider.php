@@ -23,6 +23,8 @@ class CustomRouteServiceProvider extends ServiceProvider
         $this->loadRoutes();
     }
 
+    public const HOME = '/user/dashboard';
+
     protected function loadRoutes(): void
     {
 

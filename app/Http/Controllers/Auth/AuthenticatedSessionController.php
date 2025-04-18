@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\CustomRouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended('/vendor/dashboard');
         }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(CustomRouteServiceProvider::HOME);
     }
 
     /**

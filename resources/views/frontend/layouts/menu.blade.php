@@ -67,9 +67,9 @@
 
 
                     </ul>
-                    {{-- <ul class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
-                        @if (auth()->check())
+                    <ul class="wsus__menu_item wsus__menu_item_right">
+                        {{-- <li><a href="{{ route('product-traking.index') }}">track order</a></li> --}}
+                        {{-- @if (auth()->check())
                             @if (auth()->user()->role === 'user')
                                 <li><a href="{{ route('user.dashboard') }}">my account</a></li>
                             @elseif (auth()->user()->role === 'vendor')
@@ -77,10 +77,10 @@
                             @elseif (auth()->user()->role === 'admin')
                                 <li><a href="{{ route('admin.dashbaord') }}">Admin Dashboard</a></li>
                             @endif
-                        @else
-                            <li><a href="{{ route('login') }}">login</a></li>
-                        @endif
-                    </ul> --}}
+                        @else --}}
+                        <li><a href="{{ route('login') }}">login</a></li>
+                        {{-- @endif --}}
+                    </ul>
                 </div>
             </div>
         </div>

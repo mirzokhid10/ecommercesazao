@@ -46,7 +46,6 @@
     <div class="wsus__mini_cart">
         <h4>shopping cart <span class="wsus_close_mini_cart"><i class="far fa-times"></i></span></h4>
         <ul class="mini_cart_wrapper">
-
         </ul>
         <div class="mini_cart_actions">
             <h5>sub total <span id="mini_cart_subtotal"></span></h5>

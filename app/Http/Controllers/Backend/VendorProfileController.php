@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\BAckend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class UserProfileController extends Controller
+class VendorProfileController extends Controller
 {
     public function index()
     {
-        return view('frontend.dashboard.profile');
+        return view('vendor.dashboard.profile');
     }
 
     public function updateProfile(Request $request)
@@ -32,9 +32,9 @@ class UserProfileController extends Controller
 
             $image = $request->image;
             $imageName = rand() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('uploads/userprofile/'), $imageName);
+            $image->move(public_path('uploads/vendorprofile/'), $imageName);
 
-            $path = 'uploads/userprofile/' . $imageName;
+            $path = 'uploads/vendorprofile/' . $imageName;
 
             $user->image = $path;
         }

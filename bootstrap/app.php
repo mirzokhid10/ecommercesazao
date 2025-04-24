@@ -29,6 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 * Application Service Providers...
                 */
                 App\Providers\CustomRouteServiceProvider::class,
+                Yajra\DataTables\DataTablesServiceProvider::class,
             ],
         ]);
     })

@@ -37,6 +37,8 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
                             href="{{ route('admin.brand.index') }}">Brands</a></li>
+                    <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.brand.index') }}">Products</a></li>
 
 
                 </ul>

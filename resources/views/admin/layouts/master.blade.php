@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>General Dashboard &mdash; Stisla</title>
 
     <!-- General CSS Files -->
@@ -17,61 +17,37 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-
-    {{-- iconpicker --}}
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap-iconpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/modules/select2/dist/css/select2.min.css') }}">
 
-    {{-- Tempalates CSS --}}
+    <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
 
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
 </head>
 
 <body>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
-            {{-- Admin Layouts Navbar --}}
-            @include('admin.layouts.navbar')
-            {{-- Admin Layouts Navbar --}}
 
-            {{-- Admin Layouts Sidebar --}}
+            <!-- Navbar Content -->
+            @include('admin.layouts.navbar')
+            <!-- Navbar Content End-->
+
+            <!-- sidebar Content -->
             @include('admin.layouts.sidebar')
-            {{-- Admin Layouts Sidebar --}}
+            <!-- sidebar Content -->
 
             <!-- Main Content -->
             <div class="main-content">
                 @yield('content')
             </div>
-            <footer class="main-footer">
-                <div class="footer-left">
-                    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad
-                        Nauval Azhar</a>
-                </div>
-                <div class="footer-right">
 
-                </div>
-            </footer>
         </div>
     </div>
 
@@ -86,25 +62,19 @@
 
     <!-- JS Libraies -->
     <script src="{{ asset('backend/assets/modules/simple-weather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/modules/chart.min.js') }}"></script>
+    {{-- <script src="{{asset('backend/assets/modules/chart.min.js')}}"></script> --}}
     <script src="{{ asset('backend/assets/modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-
-
-    {{-- Sweaet Alert --}}
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Iconpicker JS -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="{{ asset('backend/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('backend/assets/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     {{-- <script src="{{asset('backend/assets/js/page/index-0.js')}}"></script> --}}
@@ -121,7 +91,7 @@
         @endif
     </script>
 
-    {{-- Dynamic Delete Alert --}}
+    <!-- Dynamic Delete alart -->
 
     <script>
         $(document).ready(function() {
@@ -183,7 +153,6 @@
 
 
     @stack('scripts')
-
 </body>
 
 </html>

@@ -9667,3 +9667,8 @@ a:not([href]):not([class]):hover {
     bottom: 0 !important;
     /* position: absolute !important; */
 }
+
+.centered-btn {
+    display: revert;
+    vertical-align: middle;
+}

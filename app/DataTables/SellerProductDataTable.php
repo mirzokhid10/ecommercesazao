@@ -80,13 +80,13 @@ class SellerProductDataTable extends DataTable
             ->addColumn('vendor', function ($query) {
                 return $query->vendor->shop_name;
             })
-            // ->addColumn('approve', function ($query) {
-            //     return "<select class='form-control is_approve' data-id='$query->id'>
-            // <option value='0'>Pending</option>
-            // <option selected value='1'>Approved</option>
-            // </select>";
-            // }), 'approve'
-            ->rawColumns(['image', 'type', 'status', 'action'])
+            ->addColumn('approve', function ($query) {
+                return "<select class='form-control is_approve' data-id='$query->id'>
+            <option value='0'>Pending</option>
+            <option selected value='1'>Approved</option>
+            </select>";
+            })
+            ->rawColumns(['image', 'type', 'status', 'action', 'approve'])
             ->setRowId('id');
     }
 
@@ -98,10 +98,9 @@ class SellerProductDataTable extends DataTable
     public function query(Product $model): QueryBuilder
     {
         return $model->where('vendor_id', '!=', Auth::user()->vendor->id)
-
+            ->where('is_approved', 1)
             ->newQuery();
     }
-    //->where('is_approved', 1)
 
     /**
      * Optional method if you want to use the html builder.
@@ -138,7 +137,7 @@ class SellerProductDataTable extends DataTable
             Column::make('price'),
             Column::make('type')->width(150),
             Column::make('status'),
-            // Column::make('approve')->width(100),
+            Column::make('approve')->width(150),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

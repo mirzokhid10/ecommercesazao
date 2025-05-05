@@ -41,8 +41,8 @@
 
 
     <!--=============================
-    DASHBOARD MENU START
-  ==============================-->
+        DASHBOARD MENU START
+    ==============================-->
     <div class="wsus__dashboard_menu">
         <div class="wsusd__dashboard_user">
             <img src="{{ asset(auth()->user()->image) }}" alt="img" class="img-fluid">
@@ -50,28 +50,28 @@
         </div>
     </div>
     <!--=============================
-    DASHBOARD MENU END
-  ==============================-->
+        DASHBOARD MENU END
+    ==============================-->
 
 
     <!--=============================
-    DASHBOARD START
-  ==============================-->
+        DASHBOARD START
+    ==============================-->
     @yield('content')
     <!--=============================
-    DASHBOARD START
-  ==============================-->
+        DASHBOARD START
+    ==============================-->
 
 
     <!--============================
-      SCROLL BUTTON START
+        SCROLL BUTTON START
     ==============================-->
     <div class="wsus__scroll_btn">
         <i class="fas fa-chevron-up"></i>
     </div>
     <!--============================
-    SCROLL BUTTON  END
-  ==============================-->
+        SCROLL BUTTON  END
+    ==============================-->
 
 
     <!--jquery library js-->

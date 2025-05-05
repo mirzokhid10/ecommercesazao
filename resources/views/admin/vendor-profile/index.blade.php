@@ -20,7 +20,8 @@
                                 <div class="form-group">
                                     <label>Preview</label>
                                     <br>
-                                    <img width="200px" src="{{ asset($profile->banner) }}" alt="">
+                                    <img width="200px" src="" alt="">
+                                    {{-- {{ asset($profile->banner) }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Banner</label>
@@ -28,40 +29,43 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Shop Name</label>
-                                    <input type="text" class="form-control" name="shop_name"
-                                        value="{{ $profile->shop_name }}">
+                                    <input type="text" class="form-control" name="shop_name" value="">
+                                    {{-- {{ $profile->shop_name }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input type="text" class="form-control" name="phone" value="{{ $profile->phone }}">
+                                    <input type="text" class="form-control" name="phone" value="">
+                                    {{-- {{ $profile->phone }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" name="email" value="{{ $profile->email }}">
+                                    <input type="text" class="form-control" name="email" value="">
+                                    {{-- {{ $profile->email }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" class="form-control" name="address"
-                                        value="{{ $profile->address }}">
+                                    <input type="text" class="form-control" name="address" value="">
+                                    {{-- {{ $profile->address }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="summernote" name="description">{{ $profile->description }}</textarea>
+                                    <textarea class="summernote" name="description"></textarea>
+                                    {{-- {{ $profile->description }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Facebook</label>
-                                    <input type="text" class="form-control" name="fb_link"
-                                        value="{{ $profile->fb_link }}">
+                                    <input type="text" class="form-control" name="fb_link" value="">
+                                    {{-- {{ $profile->fb_link }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Twitter</label>
-                                    <input type="text" class="form-control" name="tw_link"
-                                        value="{{ $profile->tw_link }}">
+                                    <input type="text" class="form-control" name="tw_link" value="">
+                                    {{-- {{ $profile->tw_link }} --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Instagram</label>
-                                    <input type="text" class="form-control" name="insta_link"
-                                        value="{{ $profile->insta_link }}">
+                                    <input type="text" class="form-control" name="insta_link" value="">
+                                    {{-- {{ $profile->insta_link }} --}}
                                 </div>
                                 <button type="submmit" class="btn btn-primary">Update</button>
                             </form>

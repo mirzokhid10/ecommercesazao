@@ -46,8 +46,15 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
                             href="{{ route('admin.brand.index') }}">Brands</a></li>
-                    <li class="{{ setActive(['admin.product.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.product.index') }}">Products</a></li>
+                    <li
+                        class="{{ setActive([
+                            'admin.product.*',
+                            'admin.product-image-gallery.*',
+                            'admin.product-variant.*',
+                            'admin.product-variant-item.*',
+                        ]) }}">
+                        <a class="nav-link" href="{{ route('admin.product.index') }}">Products</a>
+                    </li>
                     <li class="{{ setActive(['admin.seller-product.*']) }}"><a class="nav-link"
                             href="{{ route('admin.seller-product.index') }}">Seller Products</a></li>
                     <li class="{{ setActive(['admin.seller-pending-product.*']) }}"><a class="nav-link"

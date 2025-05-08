@@ -36,4 +36,9 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile'); // user profile
     Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
+
+    /** Message Route */
+    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
+    Route::post('send-message', [UserMessageController::class, 'sendMessage'])->name('send-message');
+    Route::get('get-messages', [UserMessageController::class, 'getMessages'])->name('get-messages');
 });

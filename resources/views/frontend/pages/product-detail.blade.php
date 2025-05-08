@@ -15,8 +15,8 @@
                     <div class="col-12">
                         <h4>products details</h4>
                         <ul>
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">peoduct</a></li>
+                            <li><a href="/">home</a></li>
+                            <li><a href="#">product</a></li>
                             <li><a href="#">product details</a></li>
                         </ul>
                     </div>
@@ -83,24 +83,25 @@
                                 <h4>{{ $product->price }}</h4>
                             @endif
                             <p class="wsus__pro_rating">
-                                @php
+                                {{-- @php
                                     $avgRating = $product->reviews()->avg('rating');
                                     $fullRating = round($avgRating);
-                                @endphp
-
-                                @for ($i = 1; $i <= 5; $i++)
+                                @endphp --}}
+                                <i class="fas fa-star"></i>
+                                {{-- @for ($i = 1; $i <= 5; $i++)
                                     @if ($i <= $fullRating)
                                         <i class="fas fa-star"></i>
                                     @else
                                         <i class="far fa-star"></i>
                                     @endif
-                                @endfor
+                                @endfor --}}
 
-                                <span>({{ count($product->reviews) }} review)</span>
+                                <span>( review)</span>
+                                {{-- {{ count($product->reviews) }} --}}
                             </p>
                             <p class="description">{!! $product->short_description !!}</p>
                             <form class="shopping-cart-form">
-                                {{-- <div class="wsus__selectbox">
+                                <div class="wsus__selectbox">
                                     <div class="row">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         @foreach ($product->variants as $variant)
@@ -122,7 +123,7 @@
                                         @endforeach
 
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="wsus__quentity">
                                     <h5>quentity :</h5>
@@ -213,19 +214,21 @@
                                                 <div class="wsus__pro_det_vendor_text">
                                                     <h4>{{ $product->vendor->user->name }}</h4>
                                                     <p class="rating">
-                                                        @php
+                                                        {{-- @php
                                                             $avgRating = $product->reviews()->avg('rating');
                                                             $fullRating = round($avgRating);
-                                                        @endphp
+                                                        @endphp --}}
 
-                                                        @for ($i = 1; $i <= 5; $i++)
+                                                        <i class="fas fa-star"></i>
+                                                        {{-- @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $fullRating)
                                                                 <i class="fas fa-star"></i>
                                                             @else
                                                                 <i class="far fa-star"></i>
                                                             @endif
-                                                        @endfor
-                                                        <span>({{ count($product->reviews) }} review)</span>
+                                                        @endfor --}}
+                                                        <span>( review)</span>
+                                                        {{-- {{ count($product->reviews) }} --}}
                                                     </p>
                                                     <p><span>Store Name:</span> {{ $product->vendor->shop_name }}</p>
                                                     <p><span>Address:</span> {{ $product->vendor->address }}</p>
@@ -249,8 +252,9 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
-                                                        <h4>Reviews <span>{{ count($reviews) }}</span></h4>
-                                                        @foreach ($reviews as $review)
+                                                        <h4>Reviews <span></span></h4>
+                                                        {{-- {{ count($reviews) }} --}}
+                                                        {{-- @foreach ($reviews as $review)
                                                             <div class="wsus__main_comment">
                                                                 <div class="wsus__comment_img">
                                                                     <img src="{{ asset($review->user->image) }}"
@@ -276,12 +280,12 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                        @endforeach
+                                                        @endforeach --}}
 
                                                         <div class="mt-5">
-                                                            @if ($reviews->hasPages())
+                                                            {{-- @if ($reviews->hasPages())
                                                                 {{ $reviews->links() }}
-                                                            @endif
+                                                            @endif --}}
                                                         </div>
                                                     </div>
                                                 </div>

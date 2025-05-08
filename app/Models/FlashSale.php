@@ -9,5 +9,5 @@ class FlashSale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['end_date'];
+    protected $fillable = ['end_date', 'id'];
 }

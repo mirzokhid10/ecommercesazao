@@ -59,7 +59,7 @@ class FlashSaleController extends Controller
         return redirect()->back();
     }
 
-    public function chageShowAtHomeStatus(Request $request)
+    public function changeShowAtHomeStatus(Request $request)
     {
         $flashSaleItem = FlashSaleItem::findOrFail($request->id);
         $flashSaleItem->show_at_home = $request->status == 'true' ? 1 : 0;

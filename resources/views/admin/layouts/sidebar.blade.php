@@ -80,6 +80,10 @@
                             href="{{ route('admin.slider.index') }}">Slider</a></li>
                 </ul>
             </li>
+            <li class="dropdown {{ setActive(['admin.setting.*']) }}">
+                <a href="{{ route('admin.setting.index') }}" class="nav-link"><i class="fas fa-cog"></i>
+                    <span>Settings</span></a>
+            </li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

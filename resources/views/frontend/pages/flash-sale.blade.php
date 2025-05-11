@@ -51,96 +51,129 @@
                 </div>
 
                 <div class="row">
-                    @foreach ($flashSaleItems as $item)
-                        @php
-                            $product = \App\Models\Product::find($item->product_id);
-                        @endphp
-                        <div class="col-xl-3 col-sm-6 col-lg-4">
-                            <div class="wsus__product_item">
-                                <span class="wsus__new">{{ productType($product->product_type) }}</span>
-                                @if (checkDiscount($product))
-                                    <span
-                                        class="wsus__minus">-{{ calculateDiscountPercent($product->price, $product->offer_price) }}%</span>
-                                @endif
-                                <a class="wsus__pro_link" href="{{ $product->slug }}">
-                                    {{--  route('product-detail', --}}
-                                    <img src="{{ asset($product->thumb_image) }}" alt="product"
-                                        class="img-fluid w-100 img_1" />
-                                    <img src="
-                            @if (isset($product->productImageGalleries[0]->image)) {{ asset($product->productImageGalleries[0]->image) }}
-                            @else
-                                {{ asset($product->thumb_image) }} @endif
-                            "
-                                        alt="product" class="img-fluid w-100 img_2" />
-                                </a>
-                                <ul class="wsus__single_pro_icon">
-                                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            class="show_product_modal" data-id="{{ $product->id }}"><i
-                                                class="far fa-eye"></i></a>
-                                    </li>
-                                    <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
-                                                class="far fa-heart"></i></a>
-                                    </li>
-                                    {{-- <li><a href="#"><i class="far fa-random"></i></a> --}}
-                                </ul>
-                                <div class="wsus__product_details">
-                                    <a class="wsus__category" href="#">{{ $product->category->name }} </a>
-
-                                    <p class="wsus__pro_rating">
-
-
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            @if ($i <= $product->reviews_avg_rating)
-                                                <i class="fas fa-star"></i>
-                                            @else
-                                                <i class="far fa-star"></i>
-                                            @endif
-                                        @endfor
-
-                                        <span>({{ $product->reviews_count }} review)</span>
-                                    </p>
-                                    <a class="wsus__pro_name" href="{{ $product->slug }}">{{ $product->name, 52 }}</a>
-                                    {{-- route('product-detail', --}}
-                                    @if (checkDiscount($product))
-                                        <p class="wsus__price">{{ $product->offer_price }}
-                                            <del>{{ $product->price }}</del>
-                                        </p>
-                                    @else
-                                        <p class="wsus__price">{{ $product->price }}</p>
+                    <div class="col-xl-4 col-md-5 col-lg-5" style="z-index:999">
+                        <div id="sticky_pro_zoom">
+                            <div class="exzoom hidden" id="exzoom">
+                                <div class="exzoom_img_box">
+                                    @if ($product->video_link)
+                                        <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video"
+                                            href="{{ $product->video_link }}">
+                                            <i class="fas fa-play"></i>
+                                        </a>
                                     @endif
-                                    <form class="shopping-cart-form">
-                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        {{-- @foreach ($product->variants as $variant)
-                                            @if ($variant->status != 0)
-                                                <select class="d-none" name="variants_items[]">
-                                                    @foreach ($variant->productVariantItems as $variantItem)
-                                                        @if ($variantItem->status != 0)
-                                                            <option value="{{ $variantItem->id }}"
-                                                                {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
-                                                                {{ $variantItem->name }}
-                                                                (${{ $variantItem->price }})
-                                                            </option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            @endif
-                                        @endforeach --}}
-                                        <input class="" name="qty" type="hidden" min="1" max="100"
-                                            value="1" />
-                                        <button class="add_cart" type="submit">add to cart</button>
-                                    </form>
+                                    <ul class='exzoom_img_ul'>
+                                        <li><img class="zoom ing-fluid w-100" src="{{ asset($product->thumb_image) }}"
+                                                alt="product"></li>
+                                        @foreach ($product->productImageGalleries as $productImage)
+                                            <li><img class="zoom ing-fluid w-100" src="{{ asset($productImage->image) }}"
+                                                    alt="product"></li>
+                                        @endforeach
+                                    </ul>
                                 </div>
+                                <div class="exzoom_nav"></div>
+                                <p class="exzoom_btn">
+                                    <a href="javascript:void(0);" class="exzoom_prev_btn"> <i
+                                            class="far fa-chevron-left"></i> </a>
+                                    <a href="javascript:void(0);" class="exzoom_next_btn"> <i
+                                            class="far fa-chevron-right"></i> </a>
+                                </p>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                    <div class="col-xl-7 col-md-7 col-lg-7">
+                        <div class="wsus__pro_details_text">
+                            <a class="title" href="javascript:;">{{ $product->name }}</a>
+                            @if ($product->qty > 0)
+                                <p class="wsus__stock_area"><span class="in_stock">in stock</span> ({{ $product->qty }}
+                                    item)</p>
+                            @elseif ($product->qty === 0)
+                                <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{ $product->qty }}
+                                    item)</p>
+                            @endif
+                            @if (checkDiscount($product))
+                                <h4>{{ $settings->currency_icon }}{{ $product->offer_price }}
+                                    <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
+                                </h4>
+                            @else
+                                <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
+                            @endif
+                            <p class="wsus__pro_rating">
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+
+                                <span>(review)</span>
+                            </p>
+                            <p class="description">{!! $product->short_description !!}</p>
+
+                            <form class="shopping-cart-form">
+                                <div class="wsus__selectbox">
+                                    <div class="row">
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        @foreach ($product->variants as $variant)
+                                            @if ($variant->status != 0)
+                                                <div class="col-xl-6 col-sm-6">
+                                                    <h5 class="mb-2">{{ $variant->name }}: </h5>
+                                                    <select class="select_2" name="variants_items[]">
+                                                        @foreach ($variant->productVariantItems as $variantItem)
+                                                            @if ($variantItem->status != 0)
+                                                                <option value="{{ $variantItem->id }}"
+                                                                    {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                                    {{ $variantItem->name }} (${{ $variantItem->price }})
+                                                                </option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+                                        @endforeach
+
+                                    </div>
+                                </div>
+
+                                <div class="wsus__quentity">
+                                    <h5>quentity :</h5>
+                                    <div class="select_number">
+                                        <input class="number_area" name="qty" type="text" min="1"
+                                            max="100" value="1" />
+                                    </div>
+
+                                </div>
+
+                                <ul class="wsus__button_area">
+                                    <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
+
+
+                                    <li><a style="border: 1px solid gray;
+                                        padding: 7px 11px;
+                                        border-radius: 100%;"
+                                            href="javascript:;" class="add_to_wishlist" data-id="{{ $product->id }}"><i
+                                                class="fal fa-heart"></i></a></li>
+
+                                    <li>
+                                        <button type="button"
+                                            style="border: 1px solid gray;
+                                        padding: 7px 11px;
+                                        margin-left: 7px;
+                                        border-radius: 100%; background-color: #0088cc"
+                                            class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="far fa-comment-alt text-light"></i>
+                                        </button>
+
+                                    </li>
+
+
+
+
+                                </ul>
+                            </form>
+                            <p class="brand_model"><span>brand :</span> {{ $product->brand->name }}</p>
+                        </div>
+                    </div>
+
                 </div>
-                {{-- <div class="mt-5">
-                    @if ($flashSaleItems->hasPages())
-                        {{$flashSaleItems->links()}}
-                    @endif
-                </div> --}}
             </div>
-        </div>
     </section>
     {{-- <!--============================
         DAILY DEALS DETAILS END

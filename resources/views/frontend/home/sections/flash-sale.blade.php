@@ -29,11 +29,9 @@
                             <img src="{{ asset($product->thumb_image) }}" alt="product"
                                 class="img-fluid w-100 img_1" />
                             <img src="
-                        @if (isset($product->productImageGalleries[0]->image)) {{ asset($product->productImageGalleries[0]->image) }}
-                        @else
-                            {{ asset($product->thumb_image) }} @endif
-                        "
-                                alt="product" class="img-fluid w-100 img_2" />
+                                @if (isset($product->productImageGalleries[0]->image)) {{ asset($product->productImageGalleries[0]->image) }}
+                                @else {{ asset($product->thumb_image) }} @endif "alt="product"
+                                class="img-fluid w-100 img_2" />
                         </a>
                         <ul class="wsus__single_pro_icon">
                             <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -49,26 +47,26 @@
                             <a class="wsus__category" href="#">{{ $product->category->name }} </a>
 
                             <p class="wsus__pro_rating">
-
-
-                                @for ($i = 1; $i <= 5; $i++)
+                                {{-- @for ($i = 1; $i <= 5; $i++)
                                     @if ($i <= $product->reviews_avg_rating)
-                                        <i class="fas fa-star"></i>
                                     @else
                                         <i class="far fa-star"></i>
                                     @endif
-                                @endfor
+                                @endfor --}}
+                                <i class="fas fa-star"></i>
 
-                                <span>({{ $product->reviews_count }} review)</span>
+                                <span>(review)</span>
+                                {{-- {{ $product->reviews_count }} --}}
                             </p>
-                            <a class="wsus__pro_name" href="{{ $product->slug }}">{{ $product->name, 52 }}</a>
-                            {{-- route('product-detail', limitText() --}}
+                            <a class="wsus__pro_name"
+                                href="{{ route('product-detail', $product->slug) }}">{{ $product->name, 52 }}</a>
+                            {{--  limitText() --}}
                             @if (checkDiscount($product))
-                                <p class="wsus__price">{{ $product->offer_price }}
-                                    <del>{{ $product->price }}</del>
+                                <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}
+                                    <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
                                 </p>
                             @else
-                                <p class="wsus__price">{{ $product->price }}</p>
+                                <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->price }}</p>
                             @endif
                             <form class="shopping-cart-form">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">

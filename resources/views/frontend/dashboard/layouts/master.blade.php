@@ -3,16 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    {{-- <title>
-        @yield('title')
-    </title> --}}
 
-    {{-- <link rel="icon" type="image/png" href="{{ $logoSetting->favicon }}"> --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/select2.min.css') }}">
@@ -27,7 +23,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.classycountdown.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.21.0/dist/sweetalert2.min.css " rel="stylesheet">
+
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
@@ -35,10 +32,9 @@
 
 <body>
 
-
     <!--=============================
-    DASHBOARD MENU START
-  ==============================-->
+        DASHBOARD MENU START
+    ==============================-->
     <div class="wsus__dashboard_menu">
         <div class="wsusd__dashboard_user">
             <img src="{{ asset(auth()->user()->image) }}" alt="img" class="img-fluid">
@@ -47,18 +43,28 @@
     </div>
 
     <!--=============================
-    DASHBOARD MENU END
-  ==============================-->
+        DASHBOARD MENU END
+    ==============================-->
 
 
-    <!--=============================
-    DASHBOARD START
-  ==============================-->
+    <!--============================
+        Main Content Start
+    ==============================-->
     @yield('content')
-    <!--=============================
-    DASHBOARD START
-  ==============================-->
+    <!--============================
+       Main Content End
+    ==============================-->
 
+
+    <section class="product_popup_modal">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content product-modal-content">
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--============================
       SCROLL BUTTON START
@@ -108,22 +114,86 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!--Sweetalert js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.21.0/dist/sweetalert2.all.min.js "></script>
+    <!--classycountdown js-->
+    <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
+
 
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
-    <!-- Show Dynamic Validation Erros-->
     <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+            $('body').on('click', '.delete-item', function(event) {
+                event.preventDefault();
+
+                let deleteUrl = $(this).attr('href');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            type: 'DELETE',
+                            url: deleteUrl,
+
+                            success: function(data) {
+
+                                if (data.status == 'success') {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        data.message,
+                                        'success'
+                                    )
+                                    window.location.reload();
+                                } else if (data.status == 'error') {
+                                    Swal.fire(
+                                        'Cant Delete',
+                                        data.message,
+                                        'error'
+                                    )
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            }
+                        })
+                    }
+                })
+            })
+
+        })
+    </script>
+
+
+    {{-- <script>
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 toastr.error("{{ $error }}")
             @endforeach
         @endif
     </script>
-
-    <!-- Dynamic Delete alart -->
-
+    <script>
+        $(document).ready(function() {
+            $('.auto_click').click();
+        })
+    </script> --}}
+    {{-- @include('frontend.layouts.scripts') --}}
+    @stack('scripts')
 </body>
 
 </html>

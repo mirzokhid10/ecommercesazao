@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
@@ -37,8 +38,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
 
-    /** Message Route */
-    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
-    Route::post('send-message', [UserMessageController::class, 'sendMessage'])->name('send-message');
-    Route::get('get-messages', [UserMessageController::class, 'getMessages'])->name('get-messages');
+    /** User Address Route */
+    Route::resource('address', UserAddressController::class);
 });

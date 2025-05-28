@@ -92,29 +92,25 @@
                                 <span>(review)</span>
                             </p>
                             <p class="description">{!! $product->short_description !!}</p>
-
                             <form class="shopping-cart-form">
                                 <div class="wsus__selectbox">
                                     <div class="row">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         @foreach ($product->variants as $variant)
                                             @if ($variant->status != 0)
-                                                <div class="col-xl-6 col-sm-6">
-                                                    <h5 class="mb-2">{{ $variant->name }}: </h5>
-                                                    <select class="select_2" name="variants_items[]">
-                                                        @foreach ($variant->productVariantItems as $variantItem)
-                                                            @if ($variantItem->status != 0)
-                                                                <option value="{{ $variantItem->id }}"
-                                                                    {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
-                                                                    {{ $variantItem->name }} (${{ $variantItem->price }})
-                                                                </option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                                <select class="d-none" name="variants_items[]">
+                                                    @foreach ($variant->productVariantItems as $variantItem)
+                                                        @if ($variantItem->status != 0)
+                                                            <option value="{{ $variantItem->id }}"
+                                                                {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                                {{ $variantItem->name }}
+                                                                (${{ $variantItem->price }})
+                                                            </option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
                                             @endif
                                         @endforeach
-
                                     </div>
                                 </div>
 
@@ -126,22 +122,25 @@
                                     </div>
                                 </div>
                                 <ul class="wsus__button_area">
-                                    <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
-                                    <li><a style="border: 1px solid gray;
-                                        padding: 7px 11px;
-                                        border-radius: 100%;"
-                                            href="javascript:;" class="add_to_wishlist" data-id="{{ $product->id }}"><i
-                                                class="fal fa-heart"></i></a></li>
-                                    <li>
-                                        <button type="button"
-                                            style="border: 1px solid gray;
-                                        padding: 7px 11px;
-                                        margin-left: 7px;
-                                        border-radius: 100%; background-color: #0088cc"
-                                            class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="far fa-comment-alt text-light"></i>
-                                        </button>
-                                    </li>
+                                    <ul class="wsus__button_area">
+                                        <li><button type="submit" class="add_cart" href="#">add to
+                                                cart</button></li>
+                                        <li><a style="border: 1px solid gray;
+                                                padding: 7px 11px;
+                                                border-radius: 100%;"
+                                                href="javascript:;" class="add_to_wishlist"
+                                                data-id="{{ $product->id }}"><i class="fal fa-heart"></i></a></li>
+                                        <li>
+                                            <button type="button"
+                                                style="border: 1px solid gray;
+                                                    padding: 7px 11px;
+                                                    margin-left: 7px;
+                                                    border-radius: 100%; background-color: #0088cc"
+                                                class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <i class="far fa-comment-alt text-light"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
                                 </ul>
                             </form>
                             <p class="brand_model"><span>brand :</span> {{ $product->brand->name }}</p>
@@ -253,7 +252,7 @@
         PRODUCT DETAILS END
     ==============================--> --}}
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -277,47 +276,5 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.message_modal').on('submit', function(e) {
-                e.preventDefault();
-                let formData = $(this).serialize();
-
-                $.ajax({
-                    method: 'POST',
-                    url: '{{ route('user.send-message') }}',
-                    data: formData,
-                    beforeSend: function() {
-                        let html =
-                            `<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span> Sending..`
-
-                        $('.send-button').html(html);
-                        $('.send-button').prop('disabled', true);
-
-
-                    },
-                    success: function(response) {
-                        $('.message-box').val('');
-                        $('.modal-body').append(
-                            `<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`
-                        )
-                        toastr.success(response.message);
-                    },
-                    error: function(xhr, status, error) {
-                        toastr.error(xhr.responseJSON.message);
-                        $('.send-button').html('Send');
-                        $('.send-button').prop('disabled', false);
-                    },
-                    complete: function() {
-                        $('.send-button').html('Send');
-                        $('.send-button').prop('disabled', false);
-                    }
-                })
-            })
-        })
-    </script>
-@endpush

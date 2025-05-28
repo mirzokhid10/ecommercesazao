@@ -151,8 +151,8 @@
             $('.auto_click').click();
         })
     </script>
-    {{-- @include('frontend.layouts.scripts')
-    @stack('scripts') --}}
+    @include('frontend.layouts.scripts');
+    @stack('scripts')
 </body>
 
 </html>

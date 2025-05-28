@@ -51,8 +51,8 @@
                     </ul>
 
                     <ul class="wsus__menu_item">
-                        {{-- <li><a class="{{ setActive(['home']) }}" href="{{ url('/') }}">home</a></li>
-
+                        <li><a class="active" href="{{ url('/') }}">home</a></li>
+                        {{--
                         <li><a class="{{ setActive(['vendor.index']) }}"
                                 href="{{ route('vendor.index') }}">vendors</a></li>
                         <li><a class="{{ setActive(['flash-sale']) }}" href="{{ route('flash-sale') }}">flash Sale</a>

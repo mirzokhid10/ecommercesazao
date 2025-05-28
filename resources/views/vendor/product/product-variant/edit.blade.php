@@ -6,8 +6,8 @@
 
 @section('content')
     <!--=============================
-        DASHBOARD START
-      ==============================-->
+            DASHBOARD START
+          ==============================-->
     <section id="wsus__dashboard">
         <div class="container-fluid">
             @include('vendor.layouts.sidebar')
@@ -20,7 +20,7 @@
                         <h3><i class="far fa-user"></i> Update Variant</h3>
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">
-                                <form action="{{ route('vendor.products-variant.update', $variant->id) }}" method="POST">
+                                <form action="{{ route('vendor.product-variant.update', $variant->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group wsus__input">
@@ -48,6 +48,6 @@
         </div>
     </section>
     <!--=============================
-        DASHBOARD START
-      ==============================-->
+            DASHBOARD START
+          ==============================-->
 @endsection

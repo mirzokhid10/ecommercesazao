@@ -97,19 +97,18 @@
                                     <div class="row">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         @foreach ($product->variants as $variant)
-                                            @if ($variant->status != 0)
-                                                <select class="d-none" name="variants_items[]">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <h5 class="mb-2">{{$variant->name}}</h5>
+                                                <select class="select_2" name="variants_items[]">
                                                     @foreach ($variant->productVariantItems as $variantItem)
-                                                        @if ($variantItem->status != 0)
-                                                            <option value="{{ $variantItem->id }}"
-                                                                {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
-                                                                {{ $variantItem->name }}
-                                                                (${{ $variantItem->price }})
-                                                            </option>
-                                                        @endif
+                                                        <option value="{{ $variantItem->id }}"
+                                                            {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                            {{ $variantItem->name }}
+                                                            (${{ $variantItem->price }})
+                                                        </option>
                                                     @endforeach
                                                 </select>
-                                            @endif
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -278,3 +277,35 @@
         </div>
     </div> --}}
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.shopping-cart-form').on('submit', function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                console.log(formData);
+
+                $.ajax({
+                    method: "POST",
+                    data: formData,
+                    url: "{{route('add-to-cart')}}",
+                    success: function(data) {
+                        toastr.success(data.message);
+                    },
+                    error: function(data) {
+
+                    },
+                })
+            })
+
+
+        })
+    </script>
+@endpush

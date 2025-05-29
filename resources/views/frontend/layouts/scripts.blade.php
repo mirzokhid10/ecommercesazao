@@ -130,7 +130,7 @@
                  method: 'GET',
                  url: "{{ route('cart.sidebar-product-total') }}"
                  success: function(data) {
-                     //  $('#mini_cart_subtotal').text("{{ $settings->currency_icon }}" + data);
+                    //  $('#mini_cart_subtotal').text("{{ $settings->currency_icon }}" + data);
                      return data;
                  },
                  error: function(data) {}

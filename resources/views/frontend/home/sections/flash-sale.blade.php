@@ -166,44 +166,58 @@
                                     </p>
                                     <p class="description">{!! $product->short_description !!}</p>
 
-                                    <div class="wsus__selectbox">
-                                        <div class="row">
-                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                            @foreach ($product->variants as $variant)
-                                                @if ($variant->status != 0)
+                                    <form class="shopping-cart-form">
+                                        <div class="wsus__selectbox">
+                                            <div class="row">
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                @foreach ($product->variants as $variant)
                                                     <div class="col-xl-6 col-sm-6">
-                                                        <h5 class="mb-2">{{ $variant->name }}: </h5>
+                                                        <h5 class="mb-2">{{ $variant->name }}</h5>
                                                         <select class="select_2" name="variants_items[]">
                                                             @foreach ($variant->productVariantItems as $variantItem)
-                                                                @if ($variantItem->status != 0)
-                                                                    <option value="{{ $variantItem->id }}"
-                                                                        {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
-                                                                        {{ $variantItem->name }}
-                                                                        (${{ $variantItem->price }})
-                                                                    </option>
-                                                                @endif
+                                                                <option value="{{ $variantItem->id }}"
+                                                                    {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                                    {{ $variantItem->name }}
+                                                                    (${{ $variantItem->price }})
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                @endif
-                                            @endforeach
-
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="wsus__quentity">
-                                        <h5>quentity :</h5>
-                                        <form class="select_number">
-                                            <input class="number_area" type="text" min="1" max="100"
-                                                value="1" />
-                                        </form>
-                                        <h3>{{ $settings->currency_icon }}{{ $product->price }}</h3>
-                                    </div>
-                                    <ul class="wsus__button_area">
-                                        <li><a class="add_cart" href="#">add to cart</a></li>
-                                        <li><a class="buy_now" href="#">buy now</a></li>
-                                        <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="far fa-random"></i></a></li>
-                                    </ul>
+
+                                        <div class="wsus__quentity">
+                                            <h5>quentity :</h5>
+                                            <div class="select_number">
+                                                <input class="number_area" name="qty" type="text"
+                                                    min="1" max="100" value="1" />
+                                            </div>
+                                        </div>
+                                        <ul class="wsus__button_area">
+                                            <ul class="wsus__button_area">
+                                                <li><button type="submit" class="add_cart" href="#">add to
+                                                        cart</button></li>
+                                                <li><a style="border: 1px solid gray;
+                                                padding: 7px 11px;
+                                                border-radius: 100%;"
+                                                        href="javascript:;" class="add_to_wishlist"
+                                                        data-id="{{ $product->id }}"><i
+                                                            class="fal fa-heart"></i></a></li>
+                                                <li>
+                                                    <button type="button"
+                                                        style="border: 1px solid gray;
+                                                    padding: 7px 11px;
+                                                    margin-left: 7px;
+                                                    border-radius: 100%; background-color: #0088cc"
+                                                        class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal">
+                                                        <i class="far fa-comment-alt text-light"></i>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </form>
                                     <p class="brand_model"><span>brand:</span> {{ $product->brand->name }}</p>
                                     <div class="wsus__pro_det_share">
                                         <h5>share :</h5>

@@ -204,6 +204,7 @@
                                 .product_total
                             $(productId).text(totalAmount)
 
+
                             renderCartSubTotal()
                             calculateCouponDescount()
 

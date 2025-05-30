@@ -112,3 +112,33 @@ function getCartDiscount()
         return 0;
     }
 }
+
+/** get selected shipping fee from session */
+function getShppingFee()
+{
+    if (Session::has('shipping_method')) {
+        return Session::get('shipping_method')['cost'];
+    } else {
+        return 0;
+    }
+}
+
+/** get payable amount */
+function getFinalPayableAmount()
+{
+    return  getMainCartTotal() + getShppingFee();
+}
+
+/** lemit text */
+
+function limitText($text, $limit = 20)
+{
+    return \Str::limit($text, $limit);
+}
+
+function getCurrencyIcon()
+{
+    $icon = GeneralSetting::first();
+
+    return $icon->currency_icon;
+}

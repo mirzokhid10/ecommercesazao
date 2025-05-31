@@ -40,7 +40,7 @@ class PaymentController extends Controller
         $setting = GeneralSetting::first();
 
         $order = new Order();
-        $order->invocie_id = rand(1, 999999);
+        $order->invoice_id = rand(1, 999999);
         $order->user_id = Auth::user()->id;
         $order->sub_total = getCartTotal();
         $order->amount =  getFinalPayableAmount();

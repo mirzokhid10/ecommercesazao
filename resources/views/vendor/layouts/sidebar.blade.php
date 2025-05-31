@@ -4,12 +4,12 @@
         <i class="far fa-times dash_close"></i>
     </span>
     {{-- {{ asset($logoSetting->logo) }} --}}
-    <a href="{{ route('user.dashboard') }}" class="dash_logo"><img src="{{ asset('frontend/images/logo.png') }}"
-            alt="logo" class="img-fluid"></a>
+    <a href="{{ route('user.dashboard') }}" class="dash_logo"><img src="logo" alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
-        <li><a class="" href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
+        <li><a class="" href="{{ route('vendor.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
+        <li><a class="" href="{{ route('vendor.orders.index') }}"><i class="fas fa-tachometer"></i>Orders</a></li>
         <li><a class="{{ setActive(['vendor.product.']) }}" href="{{ route('vendor.product.index') }}"><i
-                    class="fa fa-product-hunt"></i> Products</a></li>
+                    class="fas fa-shop"></i> Products</a></li>
         <li><a class="{{ setActive(['vendor.shop-profile.']) }}" href="{{ route('vendor.shop-profile.index') }}"><i
                     class="far fa-user"></i> Shop Profile</a></li>
         <li><a class="{{ setActive(['vendor.profile']) }}" href="{{ route('vendor.profile') }}"><i

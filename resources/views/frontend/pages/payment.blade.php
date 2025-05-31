@@ -16,7 +16,7 @@
                         <h4>payment</h4>
                         <ul>
                             <li><a href="{{ route('home') }}">home</a></li>
-                            <li><a href="javascript:;">payment</a></li>
+                            <li><a href="{{ route('user.payment') }}">payment</a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
 
                             @include('frontend.pages.payment-gateway.razorpay')
 
-                            {{-- @include('frontend.pages.payment-gateway.cod') --}}
+                            @include('frontend.pages.payment-gateway.cod')
 
 
 

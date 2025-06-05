@@ -3,7 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Order;
-use App\Models\VendorOrder;
+use App\Models\UserOrder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
@@ -19,7 +19,7 @@ class UserOrderDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param QueryBuilder<UserOrder> $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
@@ -79,10 +79,13 @@ class UserOrderDataTable extends DataTable
 
     /**
      * Get the query source of dataTable.
+     *
+     * @return QueryBuilder<UserOrder>
      */
     public function query(Order $model): QueryBuilder
     {
-        return $model::where('user_id', Auth::user()->id)->newQuery();
+        return $model->newQuery();
+        // ::where('user_id', Auth::user()->id)
     }
 
     /**
@@ -91,7 +94,7 @@ class UserOrderDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('vendororder-table')
+            ->setTableId('userorder-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -138,6 +141,6 @@ class UserOrderDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'VendorOrder_' . date('YmdHis');
+        return 'UserOrder_' . date('YmdHis');
     }
 }

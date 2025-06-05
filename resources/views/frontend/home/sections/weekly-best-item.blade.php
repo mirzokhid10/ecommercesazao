@@ -1,10 +1,10 @@
-{{-- @php
+@php
     $categoryProductSliderSectionThree = json_decode($categoryProductSliderSectionThree->value, true);
-@endphp --}}
+@endphp
 <section id="wsus__weekly_best" class="home2_wsus__weekly_best_2 ">
     <div class="container">
         <div class="row">
-            {{-- @foreach ($categoryProductSliderSectionThree as $sliderSectionThree)
+            @foreach ($categoryProductSliderSectionThree as $sliderSectionThree)
                 @php
 
                     $lastKey = [];
@@ -18,25 +18,19 @@
 
                     if (array_keys($lastKey)[0] === 'category') {
                         $category = \App\Models\Category::find($lastKey['category']);
-                        $products = \App\Models\Product::withAvg('reviews', 'rating')
-                            ->withCount('reviews')
-                            ->where('category_id', $category->id)
+                        $products = \App\Models\Product::where('category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
                     } elseif (array_keys($lastKey)[0] === 'sub_category') {
                         $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-                        $products = \App\Models\Product::withAvg('reviews', 'rating')
-                            ->withCount('reviews')
-                            ->where('sub_category_id', $category->id)
+                        $products = \App\Models\Product::where('sub_category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
                     } else {
                         $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-                        $products = \App\Models\Product::withAvg('reviews', 'rating')
-                            ->withCount('reviews')
-                            ->where('child_category_id', $category->id)
+                        $products = \App\Models\Product::where('child_category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
@@ -48,7 +42,6 @@
                         <h3>{{ $category->name }}</h3>
                     </div>
                     <div class="row weekly_best2">
-
                         @foreach ($products as $item)
                             <div class="col-xl-4 col-lg-4">
                                 <a class="wsus__hot_deals__single" href="{{ route('product-detail', $item->slug) }}">
@@ -61,14 +54,9 @@
                                         <p class="wsus__rating">
 
                                             @for ($i = 1; $i <= 5; $i++)
-                                                @if ($i <= $item->reviews_avg_rating)
-                                                    <i class="fas fa-star"></i>
-                                                @else
-                                                    <i class="far fa-star"></i>
-                                                @endif
+                                                <i class="far fa-star"></i>
                                             @endfor
-
-                                            <span>({{ $item->reviews_count }} review)</span>
+                                            <span>( review)</span>
                                         </p>
                                         @if (checkDiscount($item))
                                             <p class="wsus__tk">{{ $settings->currency_icon }}{{ $item->offer_price }}
@@ -81,10 +69,9 @@
                                 </a>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
-            @endforeach --}}
+            @endforeach
         </div>
     </div>
 </section>

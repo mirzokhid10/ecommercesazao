@@ -35,7 +35,6 @@
         <div class="container">
             <div class="wsus__offer_details_area">
                 <div class="row">
-
                 </div>
 
                 <div class="row">

@@ -121,8 +121,32 @@
                             href="{{ route('admin.home-page-setting') }}">Home Page Setting</a></li>
                 </ul>
             </li>
-            <li class="dropdown {{ setActive(['admin.setting.*']) }}">
-                <a href="{{ route('admin.setting.index') }}" class="nav-link"><i class="fas fa-cog"></i>
+            <li
+                class="dropdown {{ setActive([
+                    'admin.footer-info.*',
+                    'admin.footer-socials.*',
+                    'admin.footer-grid-two.*',
+                    'admin.footer-grid-three.*',
+                ]) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i>
+                    <span>Footer</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActive(['admin.footer-info.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.footer-info.index') }}">Footer Info</a></li>
+                    <li class="{{ setActive(['admin.footer-socials.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.footer-socials.index') }}">Footer Socials</a></li>
+                    <li class="{{ setActive(['admin.footer-grid-two.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.footer-grid-two.index') }}">Footer Grid Two</a></li>
+                    <li class="{{ setActive(['admin.footer-grid-three.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.footer-grid-three.index') }}">Footer Grid Three</a></li>
+                </ul>
+            </li>
+            <li> <a href="{{ route('admin.subscribers.index') }}"
+                    class="nav-link {{ setActive(['admin.subscribers.*']) }}"><i class="fas fa-cog"></i>
+                    <span>Subscribers</span></a>
+            </li>
+            <li> <a href="{{ route('admin.setting.index') }}"
+                    class="nav-link {{ setActive(['admin.setting.*']) }}"><i class="fas fa-cog"></i>
                     <span>Settings</span></a>
             </li>
         </ul>

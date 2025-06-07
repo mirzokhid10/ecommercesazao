@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmailConfiguration;
 use App\Models\GeneralSetting;
 use App\Traits\ImageUploadTrait;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -14,7 +16,8 @@ class SettingController extends Controller
     public function index()
     {
         $generalSettings = GeneralSetting::first();
-        return view('admin.setting.index', compact('generalSettings'));
+        $emailSettings = EmailConfiguration::first();
+        return view('admin.setting.index', compact('generalSettings', 'emailSettings'));
     }
 
     public function generalSettingUpdate(Request $request)
@@ -47,4 +50,74 @@ class SettingController extends Controller
 
         return redirect()->back();
     }
+
+    public function emailConfigSettingUpdate(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'host' => ['required', 'max:200'],
+            'username' => ['required', 'max:200'],
+            'password' => ['required', 'max:200'],
+            'port' => ['required', 'max:200'],
+            'encryption' => ['required', 'max:200'],
+        ]);
+
+        EmailConfiguration::updateOrCreate(
+            ['id' => 1],
+            [
+                'email' => $request->email,
+                'host' => $request->host,
+                'username' => $request->username,
+                'password' => $request->password,
+                'port' => $request->port,
+                'encryption' => $request->encryption,
+            ]
+        );
+
+        toastr('Updates successfully!', 'success');
+        return redirect()->back();
+    }
+
+    // public function logoSettingUpdate(Request $request)
+    // {
+    //     $request->validate([
+    //         'logo' => ['image', 'max:3000'],
+    //         'favicon' => ['image', 'max:3000'],
+    //     ]);
+
+    //     $logoPath = $this->updateImage($request, 'logo', 'uploads', $request->old_logo);
+    //     $favicon = $this->updateImage($request, 'favicon', 'uploads', $request->old_favicon);
+
+    //     LogoSetting::updateOrCreate(
+    //         ['id' => 1],
+    //         [
+    //             'logo' => (!empty($logoPath)) ? $logoPath : $request->old_logo,
+    //             'favicon' => (!empty($favicon)) ? $favicon : $request->old_favicon
+    //         ]
+    //     );
+
+    //     toastr('Updated successfully!', 'success');
+
+    //     return redirect()->back();
+    // }
+
+    // /** Pusher settings update */
+    // function pusherSettingUpdate(Request $request): RedirectResponse
+    // {
+    //     $validatedData = $request->validate([
+    //         'pusher_app_id' => ['required'],
+    //         'pusher_key' => ['required'],
+    //         'pusher_secret' => ['required'],
+    //         'pusher_cluster' => ['required'],
+    //     ]);
+
+    //     PusherSetting::updateOrCreate(
+    //         ['id' => 1],
+    //         $validatedData
+    //     );
+
+    //     toastr('Updated successfully!', 'success');
+
+    //     return redirect()->back();
+    // }
 }

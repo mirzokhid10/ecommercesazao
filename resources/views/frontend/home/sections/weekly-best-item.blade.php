@@ -51,12 +51,21 @@
                                     </div>
                                     <div class="wsus__hot_deals__single_text mt-2">
                                         <h5>{!! limitText($item->name) !!}</h5>
-                                        <p class="wsus__rating">
+                                        <p class="wsus__pro_rating">
+                                            @php
+                                                $avgRating = $item->review()->avg('rating');
+                                                $fullRating = round($avgRating);
+                                            @endphp
 
                                             @for ($i = 1; $i <= 5; $i++)
-                                                <i class="far fa-star"></i>
+                                                @if ($i <= $fullRating)
+                                                    <i class="fas fa-star"></i>
+                                                @else
+                                                    <i class="far fa-star"></i>
+                                                @endif
                                             @endfor
-                                            <span>( review)</span>
+
+                                            <span>({{ count($item->review) }} review)</span>
                                         </p>
                                         @if (checkDiscount($item))
                                             <p class="wsus__tk">{{ $settings->currency_icon }}{{ $item->offer_price }}

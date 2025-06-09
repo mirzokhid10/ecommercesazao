@@ -36,12 +36,12 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="wsus__pro_page_bammer">
-                        {{-- @if ($productpage_banner_section->banner_one->status == 1)
+                        @if ($productpage_banner_section->banner_one->status == 1)
                             <a href="{{ $productpage_banner_section->banner_one->banner_url }}">
                                 <img class="img-gluid"
                                     src="{{ asset($productpage_banner_section->banner_one->banner_image) }}" alt="">
                             </a>
-                        @endif --}}
+                        @endif
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4">
@@ -416,13 +416,21 @@
                                         @else
                                             <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                                         @endif
-                                        <p class="review">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <span>20 review</span>
+                                        <p class="wsus__pro_rating">
+                                            @php
+                                                $avgRating = $product->review()->avg('rating');
+                                                $fullRating = round($avgRating);
+                                            @endphp
+
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $fullRating)
+                                                    <i class="fas fa-star"></i>
+                                                @else
+                                                    <i class="far fa-star"></i>
+                                                @endif
+                                            @endfor
+
+                                            <span>({{ count($product->review) }} review)</span>
                                         </p>
                                         <p class="description">{!! $product->short_description !!}</p>
 

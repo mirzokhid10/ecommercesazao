@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserOrderController;
@@ -40,7 +41,6 @@ Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProd
 Route::get('change-product-list-view', [FrontendProductController::class, 'chageListView'])->name('change-product-list-view');
 
 // Add To Cart
-
 Route::post('add-to-cart', [CartController::class, "addToCart"])->name("add-to-cart");
 Route::get('cart-details', [CartController::class, "cartDetails"])->name("cart-details");
 Route::post('cart/update-quantity', [CartController::class, 'updateProductQty'])->name('cart.update-quantity');
@@ -56,12 +56,12 @@ Route::get('apply-coupon', [CartController::class, 'applyCoupon'])->name('apply-
 Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->name('coupon-calculation');
 
 /** Newsletter routes */
-
 Route::post('newsletter-request', [NewsletterController::class, 'newsLetterRequset'])->name('newsletter-request');
 Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVarify'])->name('newsletter-verify');
 
 /** Product routes */
 Route::get('show-product-modal/{id}', [HomeController::class, 'ShowProductModal'])->name('show-product-modal');
+
 /** add product in wishlist */
 Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])->name('wishlist.store');
 
@@ -88,7 +88,10 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('wishlist/remove-product/{id}', [WishlistController::class, 'destory'])->name('wishlist.destory');
 
-    // Route::get('reviews', [ReviewController::class, 'index'])->name('review.index');
+    Route::post('review', [ReviewController::class, 'create'])->name('review.create');
+
+    /** product review routes */
+    Route::get('review', [ReviewController::class, 'index'])->name('review.index');
 
     /** Checkout routes */
     Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');

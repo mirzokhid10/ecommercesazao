@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
+use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
@@ -89,6 +91,10 @@ Route::get('seller-product', [SellerProductController::class, 'index'])->name('s
 Route::get('seller-pending-product', [SellerProductController::class, 'pendingProduct'])->name('seller-pending-product.index');
 Route::put('change-approve-status', [SellerProductController::class, 'changeApproveStatus'])->name('change-approve-status');
 
+/** Reviews routes */
+Route::get('reviews', [AdminReviewController::class, 'index'])->name('reviews.index');
+Route::put('reviews/change-status', [AdminReviewController::class, 'changeStatus'])->name('reviews.change-status');
+
 /** Flash Sale routes */
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale.index');
 Route::put('flash-sale', [FlashSaleController::class, 'update'])->name('flash-sale.update');
@@ -144,6 +150,15 @@ Route::put('product-slider-section-three', [HomePageSettingController::class, 'u
 Route::get('subscribers', [SubscribersController::class, 'index'])->name('subscribers.index');
 Route::delete('subscribers/{id}', [SubscribersController::class, 'destory'])->name('subscribers.destory');
 Route::post('subscribers-send-mail', [SubscribersController::class, 'sendMail'])->name('subscribers-send-mail');
+
+/** Advertisements route */
+Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement.index');
+Route::put('advertisement/homepage-banner-secion-one', [AdvertisementController::class, 'homepageBannerSecionOne'])->name('homepage-banner-secion-one');
+Route::put('advertisement/homepage-banner-secion-two', [AdvertisementController::class, 'homepageBannerSecionTwo'])->name('homepage-banner-secion-two');
+Route::put('advertisement/homepage-banner-secion-three', [AdvertisementController::class, 'homepageBannerSecionThree'])->name('homepage-banner-secion-three');
+Route::put('advertisement/homepage-banner-secion-four', [AdvertisementController::class, 'homepageBannerSecionFour'])->name('homepage-banner-secion-four');
+Route::put('advertisement/productpage-banner', [AdvertisementController::class, 'productPageBanner'])->name('productpage-banner');
+Route::put('advertisement/cartpage-banner', [AdvertisementController::class, 'cartPageBanner'])->name('cartpage-banner');
 
 /** Footer routes */
 Route::resource('footer-info', FooterInfoController::class);

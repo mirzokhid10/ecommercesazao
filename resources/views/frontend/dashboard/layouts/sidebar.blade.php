@@ -11,8 +11,8 @@
         <li><a class="" href="{{ route('user.profile') }}"><i class="fas fa-user"></i>My Profile</a></li>
         <li><a class="" href="{{ route('user.address.index') }}"><i class="fas fa-user"></i>Address</a></li>
         <li><a class="" href=""><i class="fas fa-home"></i>Go To Home Page</a></li>
-        <li><a class="{{ setActive(['user.orders.*']) }}" href="{{ route('user.orders.index') }}"><i
-                    class="fas fa-list-ul"></i> Orders</a></li>
+        <li><a class="" href="{{ route('user.orders.index') }}"><i class="fas fa-list-ul"></i> Orders</a></li>
+        <li><a class="" href="{{ route('user.review.index') }}"><i class="fas fa-user"></i>Reviews</a></li>
         <li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

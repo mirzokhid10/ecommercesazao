@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.classycountdown.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.21.0/dist/sweetalert2.min.css " rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
 
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
@@ -114,9 +114,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!--Sweetalert js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.21.0/dist/sweetalert2.all.min.js "></script>
     <!--classycountdown js-->
-    <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
 
 
     <!--main/custom js-->

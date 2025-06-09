@@ -5,14 +5,14 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12">
-                {{-- @if ($homepage_secion_banner_one->banner_one->status == 1)
+                @if ($homepage_secion_banner_one->banner_one->status == 1)
                     <div class="wsus__monthly_top_banner">
                         <a href="{{ $homepage_secion_banner_one->banner_one->banner_url }}">
                             <img class="img-fluid"
                                 src="{{ asset($homepage_secion_banner_one->banner_one->banner_image) }}" alt="">
                         </a>
                     </div>
-                @endif --}}
+                @endif
             </div>
         </div>
         <div class="row">
@@ -36,19 +36,22 @@
 
                                 if (array_keys($lastKey)[0] === 'category') {
                                     $category = \App\Models\Category::find($lastKey['category']);
-                                    $products[] = \App\Models\Product::where('category_id', $category->id)
+                                    $products[] = \App\Models\Product::with('review')
+                                        ->where('category_id', $category->id)
                                         ->orderBy('id', 'DESC')
                                         ->take(12)
                                         ->get();
                                 } elseif (array_keys($lastKey)[0] === 'sub_category') {
                                     $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-                                    $products[] = \App\Models\Product::where('sub_category_id', $category->id)
+                                    $products[] = \App\Models\Product::with('review')
+                                        ->where('sub_category_id', $category->id)
                                         ->orderBy('id', 'DESC')
                                         ->take(12)
                                         ->get();
                                 } else {
                                     $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-                                    $products[] = \App\Models\Product::where('child_category_id', $category->id)
+                                    $products[] = \App\Models\Product::with('review')
+                                        ->where('child_category_id', $category->id)
                                         ->orderBy('id', 'DESC')
                                         ->take(12)
                                         ->get();
@@ -75,10 +78,21 @@
                                     </div>
                                     <div class="wsus__hot_deals__single_text">
                                         <h5>{!! limitText($item->name) !!}</h5>
-                                        <p class="wsus__rating">
+                                        <p class="wsus__pro_rating">
+                                            @php
+                                                $avgRating = $item->review()->avg('rating');
+                                                $fullRating = round($avgRating);
+                                            @endphp
+
                                             @for ($i = 1; $i <= 5; $i++)
-                                                <i class="far fa-star"></i>
+                                                @if ($i <= $fullRating)
+                                                    <i class="fas fa-star"></i>
+                                                @else
+                                                    <i class="far fa-star"></i>
+                                                @endif
                                             @endfor
+
+                                            <span>({{ count($item->review) }} review)</span>
                                         </p>
                                         @if (checkDiscount($item))
                                             <p class="wsus__tk">{{ $settings->currency_icon }}{{ $item->offer_price }}

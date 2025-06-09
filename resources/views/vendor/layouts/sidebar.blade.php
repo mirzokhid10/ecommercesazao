@@ -8,12 +8,11 @@
     <ul class="dashboard_link">
         <li><a class="" href="{{ route('vendor.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
         <li><a class="" href="{{ route('vendor.orders.index') }}"><i class="fas fa-tachometer"></i>Orders</a></li>
-        <li><a class="{{ setActive(['vendor.product.']) }}" href="{{ route('vendor.product.index') }}"><i
-                    class="fas fa-shop"></i> Products</a></li>
-        <li><a class="{{ setActive(['vendor.shop-profile.']) }}" href="{{ route('vendor.shop-profile.index') }}"><i
-                    class="far fa-user"></i> Shop Profile</a></li>
-        <li><a class="{{ setActive(['vendor.profile']) }}" href="{{ route('vendor.profile') }}"><i
-                    class="fas fa-user"></i> My Profile</a></li>
+        <li><a class="" href="{{ route('vendor.product.index') }}"><i class="fas fa-truck"></i>Products</a></li>
+        <li><a class="" href="{{ route('vendor.review.index') }}"><i class="fas fa-user"></i>Reviews</a></li>
+        <li><a class="" href="{{ route('vendor.shop-profile.index') }}"><i class="far fa-user"></i>
+                Shop Profile</a></li>
+        <li><a class="" href="{{ route('vendor.profile') }}"><i class="fas fa-user"></i> My Profile</a></li>
         <li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

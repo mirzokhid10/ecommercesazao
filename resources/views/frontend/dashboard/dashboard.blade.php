@@ -16,8 +16,7 @@
                         <div class="wsus__dashboard">
                             <div class="row">
                                 <div class="col-xl-2 col-6 col-md-4">
-                                    {{-- {{ route('user.orders.index') }} --}}
-                                    <a class="wsus__dashboard_item red" href="">
+                                    <a class="wsus__dashboard_item red" href="{{ route('user.orders.index') }}">
                                         <i class="fas fa-cart-plus"></i>
                                         <p>Total Order</p>
                                         {{-- {{ $totalOrder }} --}}

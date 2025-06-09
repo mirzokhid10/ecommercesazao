@@ -11,21 +11,27 @@
 
     if (array_keys($lastKey)[0] === 'category') {
         $category = \App\Models\Category::find($lastKey['category']);
-        $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])
+        $products = \App\Models\Product::withAvg('review', 'rating')
+            ->withCount('review')
+            ->with(['category', 'productImageGalleries'])
             ->where('category_id', $category->id)
             ->orderBy('id', 'DESC')
             ->take(12)
             ->get();
     } elseif (array_keys($lastKey)[0] === 'sub_category') {
         $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-        $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])
+        $products = \App\Models\Product::withAvg('review', 'rating')
+            ->withCount('review')
+            ->with(['category', 'productImageGalleries'])
             ->where('sub_category_id', $category->id)
             ->orderBy('id', 'DESC')
             ->take(12)
             ->get();
     } else {
         $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-        $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])
+        $products = \App\Models\Product::withAvg('review', 'rating')
+            ->withCount('review')
+            ->with(['category', 'productImageGalleries'])
             ->where('child_category_id', $category->id)
             ->orderBy('id', 'DESC')
             ->take(12)
@@ -74,13 +80,21 @@
                         </ul>
                         <div class="wsus__product_details">
                             <a class="wsus__category" href="#">{{ $product->category->name }} </a>
-
                             <p class="wsus__pro_rating">
+                                @php
+                                    $avgRating = $product->review()->avg('rating');
+                                    $fullRating = round($avgRating);
+                                @endphp
+
                                 @for ($i = 1; $i <= 5; $i++)
-                                    <i class="fas fa-star"></i>
+                                    @if ($i <= $fullRating)
+                                        <i class="fas fa-star"></i>
+                                    @else
+                                        <i class="far fa-star"></i>
+                                    @endif
                                 @endfor
 
-                                <span>(review)</span>
+                                <span>({{ count($product->review) }} review)</span>
                             </p>
                             <a class="wsus__pro_name"
                                 href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name, 52) }}</a>
@@ -167,13 +181,21 @@
                                     @else
                                         <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                                     @endif
-                                    <p class="review">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>20 review</span>
+                                    <p class="wsus__pro_rating">
+                                        @php
+                                            $avgRating = $product->review()->avg('rating');
+                                            $fullRating = round($avgRating);
+                                        @endphp
+
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <= $fullRating)
+                                                <i class="fas fa-star"></i>
+                                            @else
+                                                <i class="far fa-star"></i>
+                                            @endif
+                                        @endfor
+
+                                        <span>({{ count($product->review) }} review)</span>
                                     </p>
                                     <p class="description">{!! $product->short_description !!}</p>
 

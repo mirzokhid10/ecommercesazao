@@ -33,4 +33,9 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function review()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
 }

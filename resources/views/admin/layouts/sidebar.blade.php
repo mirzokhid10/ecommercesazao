@@ -78,6 +78,7 @@
                             'admin.product-image-gallery.*',
                             'admin.product-variant.*',
                             'admin.product-variant-item.*',
+                            'admin.review.*',
                         ]) }}">
                         <a class="nav-link" href="{{ route('admin.product.index') }}">Products</a>
                     </li>
@@ -85,6 +86,8 @@
                             href="{{ route('admin.seller-product.index') }}">Seller Products</a></li>
                     <li class="{{ setActive(['admin.seller-pending-product.*']) }}"><a class="nav-link"
                             href="{{ route('admin.seller-pending-product.index') }}">Seller Pending Products</a></li>
+                    <li class="{{ setActive(['admin.reviews.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.reviews.index') }}">Product Reviews</a></li>
 
                 </ul>
             </li>
@@ -140,6 +143,10 @@
                     <li class="{{ setActive(['admin.footer-grid-three.*']) }}"><a class="nav-link"
                             href="{{ route('admin.footer-grid-three.index') }}">Footer Grid Three</a></li>
                 </ul>
+            </li>
+            <li> <a href="{{ route('admin.advertisement.index') }}"
+                    class="nav-link {{ setActive(['admin.advertisement.*']) }}"><i class="fas fa-cog"></i>
+                    <span>Advertisement</span></a>
             </li>
             <li> <a href="{{ route('admin.subscribers.index') }}"
                     class="nav-link {{ setActive(['admin.subscribers.*']) }}"><i class="fas fa-cog"></i>

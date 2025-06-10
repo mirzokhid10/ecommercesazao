@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\FlashSale;
 use App\Models\FlashSaleItem;
 use App\Models\HomePageSetting;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Cache;
+use Response;
 
 class HomeController extends Controller
 {
@@ -94,5 +96,26 @@ class HomeController extends Controller
     {
         $vendors = Vendor::where('status', 1)->paginate(20);
         return view('frontend.pages.vendor', compact('vendors'));
+    }
+
+    public function vendorProductsPage(string $id)
+    {
+
+        $products = Product::where(['status' => 1, 'is_approved' => 1, 'vendor_id' => $id])->orderBy('id', 'DESC')->paginate(12);
+
+        $categories = Category::where(['status' => 1])->get();
+        $brands = Brand::where(['status' => 1])->get();
+        $vendor = Vendor::findOrFail($id);
+
+        return view('frontend.pages.vendor-product', compact('products', 'categories', 'brands', 'vendor'));
+    }
+
+    function ShowProductModal(string $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $content = view('frontend.layouts.modal', compact('product'))->render();
+
+        return Response::make($content, 200, ['Content-Type' => 'text/html']);
     }
 }

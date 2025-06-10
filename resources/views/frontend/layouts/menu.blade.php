@@ -57,9 +57,9 @@
 
                     <ul class="wsus__menu_item">
                         <li><a class="active" href="{{ url('/') }}">home</a></li>
-                        {{--
                         <li><a class="{{ setActive(['vendor.index']) }}"
                                 href="{{ route('vendor.index') }}">vendors</a></li>
+                        {{--
                         <li><a class="{{ setActive(['flash-sale']) }}" href="{{ route('flash-sale') }}">flash Sale</a>
                         </li>
                         <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">blog</a></li>
@@ -69,18 +69,18 @@
 
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
-                        {{-- <li><a href="{{ route('product-traking.index') }}">track order</a></li> --}}
-                        {{-- @if (auth()->check())
+                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
+                        @if (auth()->check())
                             @if (auth()->user()->role === 'user')
                                 <li><a href="{{ route('user.dashboard') }}">my account</a></li>
                             @elseif (auth()->user()->role === 'vendor')
-                                <li><a href="{{ route('vendor.dashbaord') }}">Vendor Dashboard</a></li>
+                                <li><a href="{{ route('vendor.dashboard') }}">Vendor Dashboard</a></li>
                             @elseif (auth()->user()->role === 'admin')
-                                <li><a href="{{ route('admin.dashbaord') }}">Admin Dashboard</a></li>
+                                <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
                             @endif
-                        @else --}}
-                        <li><a href="{{ route('login') }}">login</a></li>
-                        {{-- @endif --}}
+                        @else
+                            <li><a href="{{ route('login') }}">login</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -93,29 +93,28 @@
     <span class="wsus__mobile_menu_close"><i class="fal fa-times"></i></span>
     <ul class="wsus__mobile_menu_header_icon d-inline-flex">
 
-        {{-- <li><a href="{{ route('user.wishlist.index') }}"><i class="fal fa-heart"></i><span id="wishlist_count">
+        <li><a href="{{ route('user.wishlist.index') }}"><i class="fal fa-heart"></i><span id="wishlist_count">
                     @if (auth()->check())
                         {{ \App\Models\Wishlist::where('user_id', auth()->user()->id)->count() }}
                     @else
                         0
                     @endif
-                </span></a></li>
+                </span>
+            </a>
+        </li>
 
         @if (auth()->check())
             @if (auth()->user()->role === 'user')
                 <li><a href="{{ route('user.dashboard') }}"><i class="fal fa-user"></i></a></li>
             @elseif (auth()->user()->role === 'vendor')
-                <li><a href="{{ route('vendor.dashbaord') }}"><i class="fal fa-user"></i></a></li>
+                <li><a href="{{ route('vendor.dashboard') }}"><i class="fal fa-user"></i></a></li>
             @elseif (auth()->user()->role === 'admin')
-                <li><a href="{{ route('admin.dashbaord') }}"><i class="fal fa-user"></i></a></li>
+                <li><a href="{{ route('admin.dashboard') }}"><i class="fal fa-user"></i></a></li>
             @endif
         @else
             <li><a href="{{ route('login') }}"><i class="fal fa-user"></i></a></li>
-        @endif --}}
-
-
+        @endif
     </ul>
-    {{--  --}}
     {{-- {{ request()->search }} --}}
     <form action="{{ route('products.index') }}" method="GET">
         <input type="text" placeholder="Search..." name="search" value="">
@@ -170,8 +169,7 @@
             <div class="wsus__mobile_menu_main_menu">
                 <div class="accordion accordion-flush" id="accordionFlushExample2">
                     <ul>
-                        {{-- {{ route('home') }} --}}
-                        <li><a href="">home</a></li>
+                        <li><a href="{{ route('home') }}">home</a></li>
                         {{-- {{ route('vendor.index') }} --}}
                         <li><a href="">vendor</a></li>
                         {{-- {{ route('blog') }} --}}

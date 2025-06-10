@@ -144,6 +144,10 @@
                             href="{{ route('admin.footer-grid-three.index') }}">Footer Grid Three</a></li>
                 </ul>
             </li>
+            <li> <a href="{{ route('admin.vendor-requests.index') }}"
+                    class="nav-link {{ setActive(['admin.vendor-requests.*']) }}"><i class="fas fa-cog"></i>
+                    <span>Pending Vendors</span></a>
+            </li>
             <li> <a href="{{ route('admin.advertisement.index') }}"
                     class="nav-link {{ setActive(['admin.advertisement.*']) }}"><i class="fas fa-cog"></i>
                     <span>Advertisement</span></a>

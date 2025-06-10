@@ -244,7 +244,7 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
-                                                        <h4>Reviews <span>{{ count($reviews) }}</span></h4>
+                                                        <h4>Reviews <span>{{ count($review) }}</span></h4>
                                                         @foreach ($reviews as $review)
                                                             <div class="wsus__main_comment">
                                                                 <div class="wsus__comment_img">
@@ -273,8 +273,8 @@
                                                             </div>
                                                         @endforeach
                                                         <div class="mt-5">
-                                                            @if ($reviews->hasPages())
-                                                                {{ $reviews->links() }}
+                                                            @if ($review->hasPages())
+                                                                {{ $review->links() }}
                                                             @endif
                                                         </div>
                                                     </div>

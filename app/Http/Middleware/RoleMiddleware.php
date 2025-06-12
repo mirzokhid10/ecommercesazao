@@ -17,9 +17,9 @@ class RoleMiddleware
     {
         if ($request->user()->role !== $role) {
             if ($request->user()->role == 'vendor') {
-                return redirect()->route('vendor.dashboard');
+                return redirect()->route('vendor.dashbaord');
             } elseif ($request->user()->role == 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.dashbaord');
             } else {
                 return redirect()->route('user.dashboard');
             }

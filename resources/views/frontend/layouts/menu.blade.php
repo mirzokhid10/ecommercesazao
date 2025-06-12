@@ -69,7 +69,7 @@
 
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
-                        <li><a href="{{ route('product-traking.index') }}">track order</a></li>
+                        <li><a href="{{ route('product-tracking.index') }}">track order</a></li>
                         <li><a class="{{ setActive(['contact']) }}" href="{{ route('contact') }}">contact</a></li>
                         @if (auth()->check())
                             @if (auth()->user()->role === 'user')
@@ -178,8 +178,7 @@
                         {{-- {{ route('about') }} --}}
                         <li><a href="">about us</a></li>
                         <li><a href="{{ route('contact') }}">contact</a></li>
-                        {{-- {{ route('product-traking.index') }} --}}
-                        <li><a href="">track order</a></li>
+                        <li><a href="{{ route('product-tracking.index') }}">track order</a></li>
                         {{-- {{ route('flash-sale') }} --}}
                         <li><a href="">flash sale</a></li>
                     </ul>

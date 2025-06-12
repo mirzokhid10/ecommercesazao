@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminListController;
 use App\Http\Controllers\Backend\AdminReviewController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
 use App\Http\Controllers\Backend\AdvertisementController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Backend\FooterGridTwoController;
 use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\FooterSocialsController;
 use App\Http\Controllers\Backend\HomePageSettingController;
+use App\Http\Controllers\Backend\ManageUserController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PaypalSettingController;
@@ -180,6 +182,16 @@ Route::put('vendor-list/status-change', [VendorListController::class, 'changeSta
 
 Route::get('vendor-condition', [VendorConditionController::class, 'index'])->name('vendor-condition.index');
 Route::put('vendor-condition/update', [VendorConditionController::class, 'update'])->name('vendor-condition.update');
+
+/** Admin list routes */
+Route::get('admin-list', [AdminListController::class, 'index'])->name('admin-list.index');
+Route::put('admin-list/status-change', [AdminListController::class, 'changeStatus'])->name('admin-list.status-change');
+Route::delete('admin-list/{id}', [AdminListController::class, 'destory'])->name('admin-list.destory');
+
+
+/** manage user routes */
+Route::get('manage-user', [ManageUserController::class, 'index'])->name('manage-user.index');
+Route::post('manage-user', [ManageUserController::class, 'create'])->name('manage-user.create');
 
 /** About routes */
 Route::get('about', [AboutController::class, 'index'])->name('about.index');

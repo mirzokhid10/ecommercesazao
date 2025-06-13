@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
@@ -88,6 +89,10 @@ Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])
 /** Product track croute */
 Route::get('product-tracking', [ProductTrackController::class, 'index'])->name('product-tracking.index');
 
+/** blog routes */
+Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
+Route::get('blog', [BlogController::class, 'blog'])->name('blog');
+
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile'); // user profile
@@ -119,7 +124,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     /** Product review routes */
     Route::get('review', [ReviewController::class, 'index'])->name('review.index');
 
-
+    /** blog comment routes */
+    Route::post('blog-comment', [BlogController::class, 'comment'])->name('blog-comment');
 
     /** Checkout routes */
     Route::get('checkout', [CheckOutController::class, 'index'])->name('checkout');

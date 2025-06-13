@@ -4,13 +4,12 @@
             <div class="col-xl-12">
                 <div class="wsus__section_header">
                     <h3>recent blogs</h3>
-                    {{-- {{ route('blog') }} --}}
-                    <a class="see_btn" href="">see more <i class="fas fa-caret-right"></i></a>
+                    <a class="see_btn" href="{{ route('blog') }}">see more <i class="fas fa-caret-right"></i></a>
                 </div>
             </div>
         </div>
         <div class="row home_blog_slider">
-            {{-- @foreach ($recentBlogs as $blog)
+            @foreach ($recentBlogs as $blog)
                 <div class="col-xl-3">
                     <div class="wsus__single_blog wsus__single_blog_2">
                         <a class="wsus__blog_img" href="{{ route('blog-details', $blog->slug) }}">
@@ -25,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach --}}
+            @endforeach
         </div>
     </div>
 </section>

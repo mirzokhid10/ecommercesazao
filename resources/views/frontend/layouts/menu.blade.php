@@ -59,10 +59,10 @@
                         <li><a class="active" href="{{ url('/') }}">home</a></li>
                         <li><a class="{{ setActive(['vendor.index']) }}"
                                 href="{{ route('vendor.index') }}">vendors</a></li>
+                        <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">blog</a></li>
                         {{--
                         <li><a class="{{ setActive(['flash-sale']) }}" href="{{ route('flash-sale') }}">flash Sale</a>
                         </li>
-                        <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">blog</a></li>
                         <li><a class="{{ setActive(['about']) }}" href="{{ route('about') }}">about</a></li> --}}
 
 
@@ -173,8 +173,7 @@
                         <li><a href="{{ route('home') }}">home</a></li>
                         {{-- {{ route('vendor.index') }} --}}
                         <li><a href="">vendor</a></li>
-                        {{-- {{ route('blog') }} --}}
-                        <li><a href="">blog</a></li>
+                        <li><a href="{{ route('blog') }}">blog</a></li>
                         {{-- {{ route('about') }} --}}
                         <li><a href="">about us</a></li>
                         <li><a href="{{ route('contact') }}">contact</a></li>

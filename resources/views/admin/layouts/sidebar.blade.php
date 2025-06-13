@@ -136,6 +136,20 @@
                             href="{{ route('admin.terms-and-conditions.index') }}">Terms & Conditions</a></li>
                 </ul>
             </li>
+
+            <li class="dropdown {{ setActive(['admin.blog-category.*', 'admin.blog.*', 'admin.blog-comments.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i>
+                    <span>Manage Blog</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setActive(['admin.blog-category.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.blog-category.index') }}">Blog Category</a></li>
+                    <li class="{{ setActive(['admin.blog.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.blog.index') }}">Blog</a></li>
+                    <li class="{{ setActive(['admin.blog-comments.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.blog-comments.index') }}">Blog Comments</a></li>
+                </ul>
+            </li>
+
             <li
                 class="dropdown {{ setActive([
                     'admin.footer-info.*',

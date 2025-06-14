@@ -60,17 +60,13 @@
                         <li><a class="{{ setActive(['vendor.index']) }}"
                                 href="{{ route('vendor.index') }}">vendors</a></li>
                         <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">blog</a></li>
-                        {{--
                         <li><a class="{{ setActive(['flash-sale']) }}" href="{{ route('flash-sale') }}">flash Sale</a>
                         </li>
-                        <li><a class="{{ setActive(['about']) }}" href="{{ route('about') }}">about</a></li> --}}
-
-
-
+                        <li><a class="{{ setActive(['about']) }}" href="{{ route('about') }}">about</a></li>
+                        <li><a class="{{ setActive(['contact']) }}" href="{{ route('contact') }}">contact</a></li>
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
                         <li><a href="{{ route('product-tracking.index') }}">track order</a></li>
-                        <li><a class="{{ setActive(['contact']) }}" href="{{ route('contact') }}">contact</a></li>
                         @if (auth()->check())
                             @if (auth()->user()->role === 'user')
                                 <li><a href="{{ route('user.dashboard') }}">my account</a></li>

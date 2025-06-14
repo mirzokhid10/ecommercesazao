@@ -13,7 +13,7 @@
 
     @yield('metas')
 
-    {{-- <link rel="icon" type="image/png" href="{{ asset($logoSetting->favicon) }}"> --}}
+    <link rel="icon" type="image/png" href="{{ asset($logoSetting->favicon) }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/select2.min.css') }}">
@@ -31,9 +31,9 @@
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
-    {{-- @if ($settings->layout === 'RTL')
+    @if ($settings->layout === 'RTL')
         <link rel="stylesheet" href="{{ asset('frontend/css/rtl.css') }}">
-    @endif --}}
+    @endif
     @vite(['resources/js/app.js'])
 </head>
 

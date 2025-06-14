@@ -27,16 +27,14 @@
 
 
                 @for ($i = 1; $i <= 5; $i++)
-                    {{-- @if ($i <= $product->reviews_avg_rating)
-
+                    @if ($i <= $product->reviews_avg_rating)
+                        <i class="fas fa-star"></i>
                     @else
                         <i class="far fa-star"></i>
-                    @endif --}}
-                    <i class="fas fa-star"></i>
+                    @endif
                 @endfor
 
-                <span>(review)</span>
-                {{-- {{ $product->reviews_count }}  --}}
+                <span>{{ $product->reviews_count }} (review)</span>
             </p>
             <a class="wsus__pro_name" href="{{ $product->slug }}">{{ limitText($product->name, 52) }}</a>
             {{-- route('product-detail', --}}

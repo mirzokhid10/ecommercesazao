@@ -7,18 +7,26 @@
     <a href="javascript:;" class="dash_logo"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"
             class="img-fluid"></a>
     <ul class="dashboard_link">
-        <li><a class="" href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
+        <li><a class="{{ setActive(['user.dashboard']) }}" href="{{ route('user.dashboard') }}"><i
+                    class="fas fa-tachometer"></i>Dashboard</a></li>
+        <li><a class="" href="{{ url('/') }}"><i class="fas fa-home"></i>Go To Home Page</a>
+        </li>
         @if (auth()->user()->role === 'vendor')
             <li><a class="{{ setActive(['vendor.dashboard']) }}" href="{{ route('vendor.dashboard') }}"><i
                         class="fas fa-tachometer"></i>Go to Vendor Dashboard</a></li>
         @endif
-        <li><a class="" href="{{ route('user.orders.index') }}"><i class="fas fa-list-ul"></i> Orders</a></li>
-        <li><a class="" href="{{ route('user.review.index') }}"><i class="fas fa-user"></i>Reviews</a></li>
-        <li><a class="" href="{{ route('user.profile') }}"><i class="fas fa-user"></i>My Profile</a></li>
-        <li><a class="" href="{{ route('user.address.index') }}"><i class="fas fa-user"></i>Address</a></li>
+        <li><a class="{{ setActive(['user.orders.*']) }}" href="{{ route('user.orders.index') }}"><i
+                    class="fas fa-list-ul"></i> Orders</a></li>
+        <li><a class="{{ setActive(['user.review.*']) }}" href="{{ route('user.review.index') }}"><i
+                    class="fas fa-user"></i>Reviews</a></li>
+        <li><a class="{{ setActive(['user.profile']) }}" href="{{ route('user.profile') }}"><i
+                    class="fas fa-user"></i>My Profile</a></li>
+        <li><a class="{{ setActive(['user.address.*']) }}" href="{{ route('user.address.index') }}"><i
+                    class="fas fa-user"></i>Address</a></li>
         @if (auth()->user()->role !== 'vendor')
-            <li><a class="{{ setActive(['user.vendor-request.*']) }}" href="{{ route('user.vendor-request.index') }}"><i
-                        class="far fa-user"></i> Request to be vendor</a></li>
+            <li><a class="{{ setActive(['user.vendor-request.*']) }}"
+                    href="{{ route('user.vendor-request.index') }}"><i class="far fa-user"></i> Request to be
+                    vendor</a></li>
         @endif
 
         <li>

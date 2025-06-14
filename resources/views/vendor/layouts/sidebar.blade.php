@@ -4,16 +4,31 @@
         <i class="far fa-times dash_close"></i>
     </span>
     {{-- {{ asset($logoSetting->logo) }} --}}
-    <a href="{{ route('user.dashboard') }}" class="dash_logo"><img src="logo" alt="logo" class="img-fluid"></a>
+    <a href="javascript:;" class="dash_logo"><img src="" alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
-        <li><a class="" href="{{ route('vendor.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
-        <li><a class="" href="{{ route('vendor.orders.index') }}"><i class="fas fa-tachometer"></i>Orders</a></li>
-        <li><a class="" href="{{ route('vendor.product.index') }}"><i class="fas fa-truck"></i>Products</a></li>
-        <li><a class="" href="{{ route('vendor.review.index') }}"><i class="fas fa-user"></i>Reviews</a></li>
-        <li><a class="" href="{{ route('vendor.shop-profile.index') }}"><i class="far fa-user"></i>
-                Shop Profile</a></li>
-        <li><a class="" href="{{ route('vendor.profile') }}"><i class="fas fa-user"></i> My Profile</a></li>
+        <li><a class="{{ setActive(['vendor.dashboard']) }}" href="{{ route('vendor.dashboard') }}"><i
+                    class="fas fa-tachometer"></i>Dashboard</a></li>
+        <li><a class="" href="{{ route('home') }}"><i class="fas fa-home"></i>Go To Home</a></li>
+
+        {{-- <li><a class="" href="{{ route('vendor.messages.index') }}"><i class="fas fa-home"></i>Messenger</a></li> --}}
+
+        <li><a class="{{ setActive(['vendor.orders.*']) }}" href="{{ route('vendor.orders.index') }}"><i
+                    class="fas fa-box"></i> Orders</a></li>
+
+        <li><a class="{{ setActive(['vendor.product.*']) }}" href="{{ route('vendor.product.index') }}"><i
+                    class="fas fa-cart-plus"></i> Products</a></li>
+        <li><a class="{{ setActive(['vendor.review.index']) }}" href="{{ route('vendor.review.index') }}"><i
+                    class="fas fa-star"></i> Review</a></li>
+
+        {{-- <li><a class="{{ setActive(['vendor.review.index']) }}" href="{{ route('vendor.withdraw.index') }}"><i
+                    class="fas fa-star"></i> My Withdraw</a></li> --}}
+
+        <li><a class="{{ setActive(['vendor.shop-profile.index']) }}"
+                href="{{ route('vendor.shop-profile.index') }}"><i class="far fa-user"></i> Shop Profile</a></li>
+        <li><a class="{{ setActive(['vendor.profile']) }}" href="{{ route('vendor.profile') }}"><i
+                    class="far fa-user"></i> My Profile</a></li>
         <li>
+
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <a href="{{ route('logout') }}"
@@ -22,5 +37,6 @@
                         class="far fa-sign-out-alt"></i> Log out</a>
             </form>
         </li>
+
     </ul>
 </div>

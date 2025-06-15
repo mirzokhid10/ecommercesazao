@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ChildCategory;
+use App\Models\HomePageSetting;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Str;
@@ -121,6 +122,15 @@ class ChildCategoryController extends Controller
             return response(['status' => 'error', 'message' => 'This item contain relation can\'t delete it.']);
         }
 
+        $homeSettings = HomePageSetting::all();
+
+        foreach ($homeSettings as $item) {
+            $array = json_decode($item->value, true);
+            $collection = collect($array);
+            if ($collection->contains('child_category', $childCategory->id)) {
+                return response(['status' => 'error', 'message' => 'This item contain relation can\'t delete it.']);
+            }
+        }
 
         $childCategory->delete();
 

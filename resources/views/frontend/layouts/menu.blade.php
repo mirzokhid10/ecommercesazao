@@ -62,7 +62,8 @@
                         <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">blog</a></li>
                         <li><a class="{{ setActive(['flash-sale']) }}" href="{{ route('flash-sale') }}">flash Sale</a>
                         </li>
-                        <li><a class="{{ setActive(['about']) }}" href="{{ route('about') }}">about</a></li>
+                        {{-- {{ setActive(['about']) }} {{ route('about') }} --}}
+                        <li><a class="" href="">about</a></li>
                         <li><a class="{{ setActive(['contact']) }}" href="{{ route('contact') }}">contact</a></li>
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
@@ -89,7 +90,6 @@
 <section id="wsus__mobile_menu">
     <span class="wsus__mobile_menu_close"><i class="fal fa-times"></i></span>
     <ul class="wsus__mobile_menu_header_icon d-inline-flex">
-
         <li><a href="{{ route('user.wishlist.index') }}"><i class="fal fa-heart"></i><span id="wishlist_count">
                     @if (auth()->check())
                         {{ \App\Models\Wishlist::where('user_id', auth()->user()->id)->count() }}
@@ -112,9 +112,8 @@
             <li><a href="{{ route('login') }}"><i class="fal fa-user"></i></a></li>
         @endif
     </ul>
-    {{-- {{ request()->search }} --}}
     <form action="{{ route('products.index') }}" method="GET">
-        <input type="text" placeholder="Search..." name="search" value="">
+        <input type="text" placeholder="Search..." name="search" value="{{ request()->search }}">
         <button type="submit"><i class="far fa-search"></i></button>
     </form>
 
@@ -133,31 +132,30 @@
             <div class="wsus__mobile_menu_main_menu">
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <ul class="wsus_mobile_menu_category">
-                        {{-- @foreach ($categories as $categoryItem) --}}
-                        <li>
-                            {{-- <a href="#"
+                        @foreach ($categories as $categoryItem)
+                            <li>
+                                <a href="#"
                                     class="{{ count($categoryItem->subCategories) > 0 ? 'accordion-button' : '' }} collapsed"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseThreew-{{ $loop->index }}" aria-expanded="false"
                                     aria-controls="flush-collapseThreew-{{ $loop->index }}"><i
-                                        class="{{ $categoryItem->icon }}"></i> {{ $categoryItem->name }}</a> --}}
+                                        class="{{ $categoryItem->icon }}"></i> {{ $categoryItem->name }}</a>
 
-                            {{-- @if (count($categoryItem->subCategories) > 0) --}}
-                            {{-- {{ $loop->index }} --}}
-                            <div id="flush-collapseThreew" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul>
-                                        {{-- @foreach ($categoryItem->subCategories as $subCategoryItem)
+                                @if (count($categoryItem->subCategories) > 0)
+                                    {{ $loop->index }}
+                                    <div id="flush-collapseThreew" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                @foreach ($categoryItem->subCategories as $subCategoryItem)
                                                     <li><a href="#">{{ $subCategoryItem->name }}</a></li>
-                                                @endforeach --}}
-                                    </ul>
-                                </div>
-                            </div>
-                            {{-- @endif --}}
-                        </li>
-                        {{-- @endforeach --}}
-
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -167,15 +165,13 @@
                 <div class="accordion accordion-flush" id="accordionFlushExample2">
                     <ul>
                         <li><a href="{{ route('home') }}">home</a></li>
-                        {{-- {{ route('vendor.index') }} --}}
-                        <li><a href="">vendor</a></li>
+                        <li><a href="{{ route('vendor.index') }}">vendor</a></li>
                         <li><a href="{{ route('blog') }}">blog</a></li>
                         {{-- {{ route('about') }} --}}
                         <li><a href="">about us</a></li>
                         <li><a href="{{ route('contact') }}">contact</a></li>
                         <li><a href="{{ route('product-tracking.index') }}">track order</a></li>
-                        {{-- {{ route('flash-sale') }} --}}
-                        <li><a href="">flash sale</a></li>
+                        <li><a href="{{ route('flash-sale') }}">flash sale</a></li>
                     </ul>
                 </div>
             </div>

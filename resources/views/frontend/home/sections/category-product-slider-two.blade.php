@@ -43,10 +43,11 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="wsus__section_header">
-                    {{ $category->name }}
-                    <h3></h3>
-                    {{ route('products.index', ['category' => $category->slug]) }}
-                    <a class="see_btn" href="">see more <i class="fas fa-caret-right"></i></a>
+
+                    <h3>{{ $category->name }}</h3>
+
+                    <a class="see_btn" href=" {{ route('products.index', ['category' => $category->slug]) }}">see more <i
+                            class="fas fa-caret-right"></i></a>
                 </div>
             </div>
         </div>

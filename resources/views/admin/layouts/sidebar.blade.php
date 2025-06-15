@@ -1,21 +1,22 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('admin.dashboard') }}">Stisla</a>
+            <a href="{{ route('admin.dashboard') }}">{{ $settings->site_name }}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('admin.dashboard') }}">St</a>
+            <a href="{{ route('admin.dashboard') }}">{{ $settings->site_name }}</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
+
             <li class="dropdown active">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link"><i
                         class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
-            <li class="menu-header">Starter</li>
+            <li class="menu-header">Ecommerce</li>
             <li
                 class="dropdown {{ setActive(['admin.category.*', 'admin.sub-category.*', 'admin.child-category.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-bookmark"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-list"></i>
                     <span>Manage Categories </span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.category.']) }}"><a class="nav-link"
@@ -99,8 +100,8 @@
                     'admin.vendor-profile.*',
                     'payment-settings',
                 ]) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i>
-                    <span>Ecommerce</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-money-bill-alt"></i><span>Ecommerce</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.flash-sale.*']) }}"><a class="nav-link"
                             href="{{ route('admin.flash-sale.index') }}">Flash Sale</a></li>
@@ -138,7 +139,8 @@
             </li>
 
             <li class="dropdown {{ setActive(['admin.blog-category.*', 'admin.blog.*', 'admin.blog-comments.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-th-large"></i>
                     <span>Manage Blog</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.blog-category.*']) }}"><a class="nav-link"
@@ -149,7 +151,7 @@
                             href="{{ route('admin.blog-comments.index') }}">Blog Comments</a></li>
                 </ul>
             </li>
-
+            <li class="menu-header">Settings & More</li>
             <li
                 class="dropdown {{ setActive([
                     'admin.footer-info.*',
@@ -157,8 +159,8 @@
                     'admin.footer-grid-two.*',
                     'admin.footer-grid-three.*',
                 ]) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i>
-                    <span>Footer</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-shoe-prints"></i><span>Footer</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.footer-info.*']) }}"><a class="nav-link"
                             href="{{ route('admin.footer-info.index') }}">Footer Info</a></li>
@@ -197,15 +199,15 @@
                 </ul>
             </li>
             <li> <a href="{{ route('admin.advertisement.index') }}"
-                    class="nav-link {{ setActive(['admin.advertisement.*']) }}"><i class="fas fa-cog"></i>
+                    class="nav-link {{ setActive(['admin.advertisement.*']) }}"><i class="fas fa-ad"></i>
                     <span>Advertisement</span></a>
             </li>
             <li> <a href="{{ route('admin.subscribers.index') }}"
-                    class="nav-link {{ setActive(['admin.subscribers.*']) }}"><i class="fas fa-cog"></i>
+                    class="nav-link {{ setActive(['admin.subscribers.*']) }}"><i class="fas fa-user-plus"></i>
                     <span>Subscribers</span></a>
             </li>
             <li> <a href="{{ route('admin.setting.index') }}"
-                    class="nav-link {{ setActive(['admin.setting.*']) }}"><i class="fas fa-cog"></i>
+                    class="nav-link {{ setActive(['admin.setting.*']) }}"><i class="fas fa-wrench"></i>
                     <span>Settings</span></a>
             </li>
         </ul>

@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
+// Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale');
 

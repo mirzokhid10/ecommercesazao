@@ -1,8 +1,16 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    Product Details
+    {{ $settings->site_name }} || Product Details
 @endsection
+
+@section('metas')
+    <meta property="og:title" content="{{ $product->name }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="{{ asset($product->thumb_image) }}" />
+@endsection
+
 
 @section('content')
     {{-- <!--============================

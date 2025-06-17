@@ -3,75 +3,68 @@
     <div class="row">
         <div class="col-xl-6 col-12 col-sm-10 col-md-8 col-lg-6 m-auto display">
             <div class="wsus__quick_view_img">
-                {{-- @if ($product->video_link)
+                @if ($product->video_link)
                     <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video"
                         href="{{ $product->video_link }}">
                         <i class="fas fa-play"></i>
                     </a>
-                @endif --}}
+                @endif
                 <div class="row modal_slider">
                     <div class="col-xl-12">
                         <div class="modal_slider_img">
-                            {{-- <img src="{{asset($product->thumb_image)}}" alt="product" class="img-fluid w-100"> --}}
+                            <img src="{{ asset($product->thumb_image) }}" alt="" class="img-fluid w-100">
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
         <div class="col-xl-6 col-12 col-sm-12 col-md-12 col-lg-6">
             <div class="wsus__pro_details_text">
-                {{-- <a class="title" href="#">{{ limitText($product->name, 150) }}</a> --}}
+                <a class="title" href="#">{{ limitText($product->name, 150) }}</a>
                 <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
-                {{-- @if (checkDiscount($product))
+                @if (checkDiscount($product))
                     <h4>{{ $settings->currency_icon }}{{ $product->offer_price }}
-                        <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
+                        <del>{{ $settings->currency_icon }} {{ $product->offer_price }}</del>
                     </h4>
                 @else
                     <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
-                @endif --}}
+                @endif
                 <p class="review">
-                    {{-- @php
-                        $avgRating = $product->reviews()->avg('rating');
+                    @php
+                        $avgRating = $product->review()->avg('rating');
                         $fullRating = round($avgRating);
-                    @endphp --}}
+                    @endphp
 
-                    {{-- @for ($i = 1; $i <= 5; $i++)
+                    @for ($i = 1; $i <= 5; $i++)
                         @if ($i <= $fullRating)
                             <i class="fas fa-star"></i>
                         @else
                             <i class="far fa-star"></i>
                         @endif
-                    @endfor --}}
+                    @endfor
 
-                    {{-- <span>({{ count($product->reviews) }} review)</span> --}}
+                    <span>({{ count($product->review) }} review)</span>
                 </p>
-                {{-- {!! limitText($product->short_description, 200) !!} --}}
-                <p class="description"></p>
+                <p class="description">{!! limitText($product->short_description, 200) !!}</p>
 
                 <form class="shopping-cart-form">
                     <div class="wsus__selectbox">
                         <div class="row">
-                            {{-- {{ $product->id }} --}}
-                            <input type="hidden" name="product_id" value="">
-                            {{-- @foreach ($product->variants as $variant)
-                                @if ($variant->status != 0)
-                                    <div class="col-xl-6 col-sm-6">
-                                        <h5 class="mb-2">{{ $variant->name }}: </h5>
-                                        <select class="select_2" name="variants_items[]">
-                                            @foreach ($variant->productVariantItems as $variantItem)
-                                                @if ($variantItem->status != 0)
-                                                    <option value="{{ $variantItem->id }}"
-                                                        {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
-                                                        {{ $variantItem->name }} (${{ $variantItem->price }})</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endif
-                            @endforeach --}}
-
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            @foreach ($product->variants as $variant)
+                                <div class="col-xl-6 col-sm-6">
+                                    <h5 class="mb-2">{{ $variant->name }}</h5>
+                                    <select class="select_2" name="variants_items[]">
+                                        @foreach ($variant->productVariantItems as $variantItem)
+                                            <option value="{{ $variantItem->id }}"
+                                                {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                {{ $variantItem->name }}
+                                                (${{ $variantItem->price }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -81,19 +74,43 @@
                             <input class="number_area" name="qty" type="text" min="1" max="100"
                                 value="1" />
                         </div>
-
                     </div>
-
                     <ul class="wsus__button_area">
-                        <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
-                        {{-- {{ $product->id }} --}}
-                        <li><a href="" class="add_to_wishlist" data-id=""><i class="fal fa-heart"></i></a>
-                        </li>
-                        {{-- <li><a href="#"><i class="far fa-random"></i></a></li> --}}
+                        <ul class="wsus__button_area">
+                            <li><button type="submit" class="add_cart" href="#">add to
+                                    cart</button></li>
+                            <li><a style="border: 1px solid gray;
+                                                padding: 7px 11px;
+                                                border-radius: 100%;"
+                                    href="javascript:;" class="add_to_wishlist" data-id="{{ $product->id }}"><i
+                                        class="fal fa-heart"></i></a></li>
+                            <li>
+                                <button type="button"
+                                    style="border: 1px solid gray;
+                                                    padding: 7px 11px;
+                                                    margin-left: 7px;
+                                                    border-radius: 100%; background-color: #0088cc"
+                                    class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="far fa-comment-alt text-light"></i>
+                                </button>
+                            </li>
+                        </ul>
                     </ul>
                 </form>
-                {{-- {{ $product->brand->name }} --}}
-                <p class="brand_model"><span>brand :</span> </p>
+                <p class="brand_model"><span>brand:</span> {{ $product->brand->name }}</p>
+                <div class="wsus__pro_det_share">
+                    <h5>share :</h5>
+                    <ul class="d-flex">
+                        <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a>
+                        </li>
+                        <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

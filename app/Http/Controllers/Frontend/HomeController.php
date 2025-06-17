@@ -27,7 +27,7 @@ class HomeController extends Controller
 
         $flashSaleDate = FlashSale::first();
 
-        $flashSaleItems = FlashSaleItem::where('show_at_home', 1)->where('status', 1)->get();
+        $flashSaleItems = FlashSaleItem::where('show_at_home', 1)->where('status', 1)->pluck('product_id')->toArray();
 
         $popularCategory = HomePageSetting::where('key', 'popular_category_section')->first();
         $brands = Brand::where('status', 1)->where('is_featured', 1)->get();

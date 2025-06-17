@@ -18,7 +18,7 @@
             <div class="row grid2">
                 @foreach ($typeBaseProducts as $key => $products)
                     @foreach ($products as $product)
-                        <div class="col-xl-3 col-sm-6 col-lg-4 {{ $key }}">
+                        {{-- <div class="col-xl-3 col-sm-6 col-lg-4 {{ $key }}">
                             <div class="wsus__product_item">
                                 <span class="wsus__new">{{ productType($product->product_type) }}</span>
                                 @if (checkDiscount($product))
@@ -92,7 +92,8 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+                        <x-product-card :product="$product" :key="$key" />
                     @endforeach
                 @endforeach
             </div>
@@ -144,7 +145,7 @@
     </div>
 </section>
 
-@foreach ($typeBaseProducts as $key => $products)
+{{-- @foreach ($typeBaseProducts as $key => $products)
     @foreach ($products as $product)
         <section class="product_popup_modal">
             <div class="modal fade" id="exampleModal-{{ $product->id }}" tabindex="-1" aria-hidden="true">
@@ -279,4 +280,4 @@
             </div>
         </section>
     @endforeach
-@endforeach
+@endforeach --}}

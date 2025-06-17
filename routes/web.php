@@ -93,6 +93,10 @@ Route::get('product-tracking', [ProductTrackController::class, 'index'])->name('
 Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
 Route::get('blog', [BlogController::class, 'blog'])->name('blog');
 
+/** Product routes*/
+Route::get('show-product-modal/{id}', [HomeController::class, 'ShowProductModal'])->name('show-product-modal');
+
+
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile'); // user profile

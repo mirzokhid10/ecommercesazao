@@ -53,7 +53,7 @@
         </div>
         <div class="row flash_sell_slider">
             @foreach ($products as $product)
-                <div class="col-xl-3 col-sm-6 col-lg-4">
+                {{-- <div class="col-xl-3 col-sm-6 col-lg-4">
                     <div class="wsus__product_item">
                         <span class="wsus__new">{{ productType($product->product_type) }}</span>
                         @if (checkDiscount($product))
@@ -77,7 +77,6 @@
                             <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
                                         class="far fa-heart"></i></a>
                             </li>
-                            {{-- <li><a href="#"><i class="far fa-random"></i></a> --}}
                         </ul>
                         <div class="wsus__product_details">
                             <a class="wsus__category" href="#">{{ $product->category->name }} </a>
@@ -100,10 +99,10 @@
                             <a class="wsus__pro_name"
                                 href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name, 52) }}</a>
                             {{--  limitText() --}}
-                            @if (checkDiscount($product))
-                                <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}
-                                    <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
-                                </p>
+                {{-- @if (checkDiscount($product))
+                    <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}
+                        <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
+                    </p>
                             @else
                                 <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->price }}</p>
                             @endif
@@ -123,9 +122,10 @@
                                 <input type="hidden" name="qty" min="1" max="100" value="1">
                                 <button class="add_cart" href="#" type="submit">add to cart</button>
                             </form>
-                        </div>
                     </div>
-                </div>
+                    </div>
+                </div> --}}
+                <x-product-card :product="$product" />
             @endforeach
         </div>
     </div>
@@ -235,24 +235,21 @@
                                     <ul class="wsus__button_area">
                                         <li><a class="add_cart" href="#">add to cart</a></li>
                                         <li><a class="buy_now" href="#">buy now</a></li>
-                                        <li><a href="" class="add_to_wishlist"
-                                                data-id="{{ $product->id }}"><i class="fal fa-heart"></i></a></li>
+                                        <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
+                                                    class="fal fa-heart"></i></a></li>
                                         <li><a href="#"><i class="far fa-random"></i></a></li>
                                     </ul>
                                     <p class="brand_model"><span>brand:</span> {{ $product->brand->name }}</p>
                                     <div class="wsus__pro_det_share">
                                         <h5>share :</h5>
                                         <ul class="d-flex">
-                                            <li><a class="facebook" href="#"><i
-                                                        class="fab fa-facebook-f"></i></a>
+                                            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
                                             </li>
                                             <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
                                             </li>
-                                            <li><a class="whatsapp" href="#"><i
-                                                        class="fab fa-whatsapp"></i></a>
+                                            <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a>
                                             </li>
-                                            <li><a class="instagram" href="#"><i
-                                                        class="fab fa-instagram"></i></a>
+                                            <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
                                             </li>
                                         </ul>
                                     </div>

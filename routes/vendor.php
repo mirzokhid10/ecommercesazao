@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\VendorProductVariantController;
 use App\Http\Controllers\Backend\VendorProductVariantItemController;
 use App\Http\Controllers\BAckend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorShopProfileController;
+use App\Http\Controllers\Backend\VendorWithdrawController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -49,3 +50,7 @@ Route::get('orders/status/{id}', [VendorOrderController::class, 'orderStatus'])-
 
 /** Reviews route */
 Route::get('reviews', [VendorProductReviewController::class, 'index'])->name('review.index');
+
+/** Withdraw route */
+Route::resource('withdraw', VendorWithdrawController::class);
+Route::get('withdraw-request/{id}', [VendorWithdrawController::class, 'showRequest'])->name('withdraw-request.show');

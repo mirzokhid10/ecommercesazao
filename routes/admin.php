@@ -44,6 +44,8 @@ use App\Http\Controllers\Backend\VendorConditionController;
 use App\Http\Controllers\Backend\VendorListController;
 use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorRequestController;
+use App\Http\Controllers\Backend\WithdrawController;
+use App\Http\Controllers\Backend\WithdrawMethodController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -140,9 +142,15 @@ Route::resource('order', OrderController::class);
 /** Order Transaction route */
 Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');
 
+/** Withdraw method route */
+Route::resource('withdraw-method', WithdrawMethodController::class);
+Route::get('withdraw', [WithdrawController::class, 'index'])->name('withdraw.index');
+Route::get('withdraw/{id}', [WithdrawController::class, 'show'])->name('withdraw.show');
+Route::put('withdraw/{id}', [WithdrawController::class, 'update'])->name('withdraw.update');
+
 /** settings routes */
 Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
-Route::put('generale-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('generale-setting-update');
+Route::put('general-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('general-setting-update');
 Route::put('email-setting-update', [SettingController::class, 'emailConfigSettingUpdate'])->name('email-setting-update');
 Route::put('logo-setting-update', [SettingController::class, 'logoSettingUpdate'])->name('logo-setting-update');
 Route::put('pusher-setting-update', [SettingController::class, 'pusherSettingUpdate'])->name('pusher-setting-update');

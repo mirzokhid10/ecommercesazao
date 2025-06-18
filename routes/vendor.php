@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Backend\VendorMessageController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\VendorProductImageGalleryController;
@@ -17,6 +18,11 @@ Route::get('dashboard', [VendorController::class, 'dashboard'])->name('dashboard
 Route::get('profile', [VendorProfileController::class, 'index'])->name('profile');
 Route::put('profile', [VendorProfileController::class, 'updateProfile'])->name('profile.update');
 Route::post('profile', [VendorProfileController::class, 'updatePassword'])->name('profile.update.password');
+
+/** Message Route */
+Route::get('messages', [VendorMessageController::class, 'index'])->name('messages.index');
+Route::post('send-message', [VendorMessageController::class, 'sendMessage'])->name('send-message');
+Route::get('get-messages', [VendorMessageController::class, 'getMessages'])->name('get-messages');
 
 /** Vendor shop profile  */
 Route::resource('shop-profile', VendorShopProfileController::class);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminListController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Backend\FooterInfoController;
 use App\Http\Controllers\Backend\FooterSocialsController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\ManageUserController;
+use App\Http\Controllers\Backend\MessegeController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PaypalSettingController;
@@ -148,9 +150,14 @@ Route::get('withdraw', [WithdrawController::class, 'index'])->name('withdraw.ind
 Route::get('withdraw/{id}', [WithdrawController::class, 'show'])->name('withdraw.show');
 Route::put('withdraw/{id}', [WithdrawController::class, 'update'])->name('withdraw.update');
 
+/** Message route */
+Route::get('messages', [MessegeController::class, 'index'])->name('messages.index');
+Route::get('get-messages', [MessegeController::class, 'getMessages'])->name('get-messages');
+Route::post('send-message', [MessegeController::class, 'sendMessage'])->name('send-message');
+
 /** settings routes */
 Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
-Route::put('general-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('general-setting-update');
+Route::put('generale-setting-update', [SettingController::class, 'generalSettingUpdate'])->name('generale-setting-update');
 Route::put('email-setting-update', [SettingController::class, 'emailConfigSettingUpdate'])->name('email-setting-update');
 Route::put('logo-setting-update', [SettingController::class, 'logoSettingUpdate'])->name('logo-setting-update');
 Route::put('pusher-setting-update', [SettingController::class, 'pusherSettingUpdate'])->name('pusher-setting-update');

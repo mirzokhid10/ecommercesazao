@@ -399,3 +399,44 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.message_modal').on('submit', function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ route('user.send-message') }}',
+                    data: formData,
+                    beforeSend: function() {
+                        let html =
+                            `<span class="spinner-border spinner-border-sm text-light"
+                            role="status" aria-hidden="true"></span> Sending..`
+                        $('.send-button').html(html);
+                        $('.send-button').prop('disabled', true);
+                    },
+                    success: function(response) {
+                        $('.message-box').val('');
+                        $('.modal-body').append(
+                            `<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}"
+                                class="text-primary">Click here</a> for go to messenger.</div>`
+                        )
+                        toastr.success(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(xhr.responseJSON.message);
+                        $('.send-button').html('Send');
+                        $('.send-button').prop('disabled', false);
+                    },
+                    complete: function() {
+                        $('.send-button').html('Send');
+                        $('.send-button').prop('disabled', false);
+                    }
+                })
+            })
+        })
+    </script>
+@endpush

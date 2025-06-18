@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserVendorRequestController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\ProductTrackController;
+use App\Http\Controllers\Frontend\UserMessageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -104,9 +105,9 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::post('profile', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
 
     /** Message Route */
-    // Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
-    // Route::post('send-message', [UserMessageController::class, 'sendMessage'])->name('send-message');
-    // Route::get('get-messages', [UserMessageController::class, 'getMessages'])->name('get-messages');
+    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
+    Route::post('send-message', [UserMessageController::class, 'sendMessage'])->name('send-message');
+    Route::get('get-messages', [UserMessageController::class, 'getMessages'])->name('get-messages');
 
     /** User Address Route */
     Route::resource('address', UserAddressController::class);

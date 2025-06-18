@@ -19,7 +19,9 @@ class SettingController extends Controller
     {
         $generalSettings = GeneralSetting::first();
         $emailSettings = EmailConfiguration::first();
-        return view('admin.setting.index', compact('generalSettings', 'emailSettings'));
+        $logoSettings = LogoSetting::first();
+        $pusherSettings = PusherSetting::first();
+        return view('admin.setting.index', compact('generalSettings', 'emailSettings', 'logoSettings', 'pusherSettings'));
     }
 
     public function generalSettingUpdate(Request $request)

@@ -32,6 +32,14 @@
         <link rel="stylesheet" href="{{ asset('backend/assets/css/rtl.css') }}">
     @endif
 
+    <script>
+        const USER = {
+            id: "{{ auth()->user()->id }}",
+            name: "{{ auth()->user()->name }}",
+            image: "{{ asset(auth()->user()->image) }}",
+        }
+    </script>
+
 </head>
 
 <body>

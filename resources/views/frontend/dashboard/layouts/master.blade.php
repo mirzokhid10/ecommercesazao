@@ -28,9 +28,23 @@
 
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+
+    @if ($settings->layout === 'RTL')
+        <link rel="stylesheet" href="{{ asset('frontend/css/rtl.css') }}">
+    @endif
+
+    <script>
+        const USER = {
+            id: "{{ auth()->user()->id }}",
+            name: "{{ auth()->user()->nmae }}",
+            image: "{{ asset(auth()->user()->image) }}"
+        }
+    </script>
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
+    {{-- , 'resources/js/frontend.js' --}}
 
     <!--=============================
         DASHBOARD MENU START

@@ -117,23 +117,12 @@
                         $.each(response, function(index, value) {
                             if (value.sender_id == USER.id) {
                                 var message = `
-                                <div class="chat-item chat-right" style="">
-                                    <img style="height: 50px; object-fit: cover;" src="${USER.image}">
-                                    <div class="chat-details">
-                                        <div class="chat-text">${value.message}</div>
-                                        <div class="chat-time">${formatDateTime(value.created_at)}</div>
-                                    </div>
-                                </div>
+                                <div class="chat-item chat-right" style=""><img style="height: 50px;
+                                 object-fit: cover;" src="${USER.image}"><div class="chat-details"><div class="chat-text">${value.message}</div><div class="chat-time">${formatDateTime(value.created_at)}</div></div></div>
                                 `
                             } else {
                                 var message = `
-                                <div class="chat-item chat-left" style="">
-                                    <img src="${receiverImage}">
-                                    <div class="chat-details">
-                                        <div class="chat-text">${value.message}</div>
-                                        <div class="chat-time">${formatDateTime(value.created_at)}</div>
-                                    </div>
-                                </div>
+                                <div class="chat-item chat-left" style=""><img src="${receiverImage}"><div class="chat-details"><div class="chat-text">${value.message}</div><div class="chat-time">${formatDateTime(value.created_at)}</div></div></div>
                                 `
                             }
 
@@ -152,6 +141,7 @@
                 })
             })
 
+
             $('#message-form').on('submit', function(e) {
                 e.preventDefault();
                 let formData = $(this).serialize();
@@ -165,14 +155,8 @@
 
                 // set message in inbox
                 let message = `
-                <div class="chat-item chat-right" style="">
-                    <img style="height: 50px; object-fit: cover;"
-                    src="${USER.image}">
-                    <div class="chat-details">
-                        <div class="chat-text">${messageData}</div>
-                        <div class="chat-time">10:53</div>
-                    </div>
-                </div>
+                <div class="chat-item chat-right" style=""><img style="height: 50px;
+                object-fit: cover;" src="${USER.image}"><div class="chat-details"><div class="chat-text">${messageData}</div><div class="chat-time">10:53</div></div></div>
                 `
                 mainChatInbox.append(message);
                 $('.message-box').val('');

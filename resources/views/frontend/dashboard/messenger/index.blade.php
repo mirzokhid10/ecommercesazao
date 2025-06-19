@@ -31,7 +31,7 @@
                                                         <div
                                                             class="wsus_chat_list_img {{ $unseenMessages ? 'msg-notification' : '' }}">
                                                             <img src="{{ asset($chatUser->receiverProfile->image) }}"
-                                                                alt="user" class="img-fluid">
+                                                                alt="user" class="img-fluid ">
                                                             <span class="pending d-none" id="pending-6">0</span>
                                                         </div>
                                                         <div class="wsus_chat_list_text">
@@ -50,7 +50,9 @@
                                             <div class="tab-pane fade show" id="v-pills-home" role="tabpanel"
                                                 aria-labelledby="v-pills-home-tab">
                                                 <div id="chat_box">
-                                                    <div class="wsus__chat_area" style="position: relative; height: 70vh;">
+                                                    <div class="wsus__chat_area"
+                                                        style="position: relative;
+                                            height: 70vh;">
 
                                                         <div class="wsus__chat_area_header">
                                                             <h2 id="chat-inbox-title">Chat with Daniel Paul</h2>
@@ -58,7 +60,10 @@
                                                         <div class="wsus__chat_area_body" data-inbox="">
 
                                                         </div>
-                                                        <div class="wsus__chat_area_footer" style="width: 100%; bottom: 0;">
+                                                        <div class="wsus__chat_area_footer"
+                                                            style="
+                                                width: 100%;
+                                                bottom: 0;">
                                                             <form id="message-form">
                                                                 @csrf
                                                                 <input type="text" placeholder="Type Message"

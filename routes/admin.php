@@ -151,9 +151,9 @@ Route::get('withdraw/{id}', [WithdrawController::class, 'show'])->name('withdraw
 Route::put('withdraw/{id}', [WithdrawController::class, 'update'])->name('withdraw.update');
 
 /** Message route */
-Route::get('messages', [MessegeController::class, 'index'])->name('messages.index');
-Route::get('get-messages', [MessegeController::class, 'getMessages'])->name('get-messages');
-Route::post('send-message', [MessegeController::class, 'sendMessage'])->name('send-message');
+Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
+Route::get('get-messages', [MessageController::class, 'getMessages'])->name('get-messages');
+Route::post('send-message', [MessageController::class, 'sendMessage'])->name('send-message');
 
 /** settings routes */
 Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
